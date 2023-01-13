@@ -3,8 +3,9 @@
 .gantt {
   position: relative;
   overflow: hidden;
-  color: #93a1a1;
-  background: #002b36; }
+  /* color: #93a1a1; */
+  /* background: #002b36; */
+  }
 
 .gantt * {
   font-weight: normal;
@@ -13,6 +14,17 @@
 
 .gantt li {
   list-style: none; }
+
+  
+  li.gantt-label {
+    background: #f2f2f2;
+    border: none;
+}
+
+li.gantt-label:nth-child(odd) {
+    background: #fff;
+    border: none;
+}
 
 /* optional title */
 .gantt figcaption {
@@ -31,8 +43,9 @@
   bottom: 0;
   top: 0;
   width: 199px;
-  border-right: 1px solid #000b0d;
-  z-index: 2; }
+  /* border-right: 1px solid #000b0d; */
+  z-index: 2;
+  }
 
 .gantt aside:before {
   position: absolute;
@@ -43,22 +56,25 @@
   bottom: 0;
   content: "";
   border-left: 1px solid rgba(255, 255, 255, 0.03);
-  background: -webkit-linear-gradient(left, rgba(0, 43, 54, 0.7), rgba(0, 43, 54, 0));
+  /* background: -webkit-linear-gradient(left, rgba(0, 43, 54, 0.7), rgba(0, 43, 54, 0)); */
   background: -moz-linear-gradient(left, rgba(0, 43, 54, 0.7), rgba(0, 43, 54, 0));
   background: linear-gradient(left, rgba(0, 43, 54, 0.7), rgba(0, 43, 54, 0));
-  z-index: 3; }
+  z-index: 3;
+  }
 
 .gantt aside .gantt-labels {
-  border-top: 1px solid #001f27; }
+  border-top: 1px solid #001f27;
+  }
 
 .gantt aside .gantt-label strong {
   display: block;
   padding: 0 20px;
-  color: #93a1a1;
-  border-bottom: 1px solid #001f27;
-  overflow: hidden;
+  color: #1d1d1d;
+  /* border-bottom: 1px solid #001f27; */
+  /* overflow: hidden; */
   text-overflow: ellipsis;
-  white-space: nowrap; }
+  white-space: nowrap;
+  }
 
 /* data section */
 .gantt-data {
@@ -99,12 +115,14 @@
 
 .gantt-day span {
   display: block;
-  border-right: 1px solid #001f27;
-  border-bottom: 1px solid #001f27;
-  text-indent: -12000px; }
+  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  text-indent: -12000px;
+  }
 
 .gantt-day.weekend span {
-  background: #073642; }
+  background: #f2f2f2;
+  }
 
 /* data blocks */
 .gantt-block {
@@ -158,7 +176,8 @@
 /* scrollbar styles */
 .gantt ::-webkit-scrollbar {
   background: #002b36;
-  height: 10px; }
+  height: 10px;
+  }
 
 .gantt ::-webkit-scrollbar-thumb {
   background: #93a1a1;
@@ -173,4 +192,5 @@
 
 .gantt ::selection {
   background: #fff;
-  color: #000; }
+  color: #000;
+  }
