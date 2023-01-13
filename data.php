@@ -47,7 +47,7 @@ foreach ($results as $result){
  $city = $city->fetch();
 
 /***********************
- * FILL THE DATA ARRAY *
+ * FILL THE DATA ARRAY * 
  ***********************/
 
   $data[] = array(
