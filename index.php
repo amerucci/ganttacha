@@ -114,16 +114,16 @@ $gantti = new Gantti($data, array(
         <div class="position-sticky pt-3 sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item" id="addTraining" data-title="Ajouter une formation">
-              
-                <span data-feather="home" class=" nav-link align-text-bottom" ></span>
-                Ajouter une formation
-              
+
+              <span data-feather="home" class=" nav-link align-text-bottom"></span>
+              Ajouter une formation
+
             </li>
             <li class="nav-item" id="addTrainer" data-title="Ajouter un formateur">
-             
-                <span data-feather="file" class="align-text-bottom"></span>
-                Ajouter un formateur
-             
+
+              <span data-feather="file" class="align-text-bottom"></span>
+              Ajouter un formateur
+
             </li>
           </ul>
 
@@ -291,7 +291,16 @@ $gantti = new Gantti($data, array(
     <div class="modal-content">
       <h2 id="modalTitle">Modal Title</h2>
       <span class="close">&times;</span>
-      <p>Some text in the Modal..</p>
+      <div id="modalContent">
+        <form id="modalForm">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+         
+        </form>
+      </div>
     </div>
 
   </div>
@@ -309,23 +318,51 @@ $gantti = new Gantti($data, array(
     // When the user clicks the button, open the modal 
     // btn.onclick = function() {
     //   modal.style.display = "block";
-      
+
     // }
 
     //Function when clickin on addin training
-    document.querySelector("#addTraining").addEventListener("click", function(){
+    document.querySelector("#addTraining").addEventListener("click", function() {
       //alert(document.getElementById("addTraining").getAttribute('data-title'))
       modal.style.display = "block";
-      document.querySelector("#modalTitle").innerHTML=document.getElementById("addTraining").getAttribute('data-title')
+      document.querySelector("#modalTitle").innerHTML = document.getElementById("addTraining").getAttribute('data-title')
     })
 
-     //Function when clickin on addin trainer
-     document.querySelector("#addTrainer").addEventListener("click", function(){
+    //Function when clickin on addin trainer
+    document.querySelector("#addTrainer").addEventListener("click", function() {
       //alert(document.getElementById("addTraining").getAttribute('data-title'))
       modal.style.display = "block";
-      document.querySelector("#modalTitle").innerHTML=document.getElementById("addTrainer").getAttribute('data-title')
+      document.querySelector("#modalTitle").innerHTML = document.getElementById("addTrainer").getAttribute('data-title')
+      let form = document.querySelector("#modalForm")
+      let divTitle = document.createElement('div');
+      divTitle.className = "mb-3"
+
+      //LABEL INPUT NAME FORMER
+      let labelInputNameFormer = document.createElement('label');
+      labelInputNameFormer.setAttribute('for', 'inputNameFormerId')
+      labelInputNameFormer.setAttribute('class', 'form-label')
+      labelInputNameFormer.innerText = "Formateur"
+
+      //INPUT NAME FORMER
+      let inputNameFormer = document.createElement('input');
+      inputNameFormer.setAttribute('type', 'text');
+      inputNameFormer.setAttribute('id', 'inputNameFormerId');
+      inputNameFormer.setAttribute('class', 'form-control');
+
+      //INPUT NAME FORMER EXPLAINATION
+      // <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      let helpNameFormer = document.createElement('div');
+      helpNameFormer.setAttribute('class', 'form-text')
+      helpNameFormer.setAttribute('id', 'inputNameFormer-help')
+      helpNameFormer.innerText="Saisir le prénom et nom du formateur"
+
+      divTitle.appendChild(labelInputNameFormer)
+      divTitle.appendChild(inputNameFormer)
+      divTitle.appendChild(helpNameFormer)
+      form.appendChild(divTitle)
+
     })
-    
+
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
