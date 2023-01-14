@@ -119,11 +119,11 @@ $gantti = new Gantti($data, array(
                 Ajouter une formation
               
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+            <li class="nav-item" id="addTrainer" data-title="Ajouter un formateur">
+             
                 <span data-feather="file" class="align-text-bottom"></span>
                 Ajouter un formateur
-              </a>
+             
             </li>
           </ul>
 
@@ -289,7 +289,7 @@ $gantti = new Gantti($data, array(
 
     <!-- Modal content -->
     <div class="modal-content">
-      <h2>Ajouter une formation</h2>
+      <h2 id="modalTitle">Modal Title</h2>
       <span class="close">&times;</span>
       <p>Some text in the Modal..</p>
     </div>
@@ -307,13 +307,25 @@ $gantti = new Gantti($data, array(
     var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-      modal.style.display = "block";
+    // btn.onclick = function() {
+    //   modal.style.display = "block";
       
-    }
+    // }
 
     //Function when clickin on addin training
+    document.querySelector("#addTraining").addEventListener("click", function(){
+      //alert(document.getElementById("addTraining").getAttribute('data-title'))
+      modal.style.display = "block";
+      document.querySelector("#modalTitle").innerHTML=document.getElementById("addTraining").getAttribute('data-title')
+    })
 
+     //Function when clickin on addin trainer
+     document.querySelector("#addTrainer").addEventListener("click", function(){
+      //alert(document.getElementById("addTraining").getAttribute('data-title'))
+      modal.style.display = "block";
+      document.querySelector("#modalTitle").innerHTML=document.getElementById("addTrainer").getAttribute('data-title')
+    })
+    
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
