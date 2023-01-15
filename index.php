@@ -293,12 +293,6 @@ $gantti = new Gantti($data, array(
       <span class="close">&times;</span>
       <div id="modalContent">
         <form id="modalForm">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-         
         </form>
       </div>
     </div>
@@ -348,6 +342,8 @@ $gantti = new Gantti($data, array(
       inputNameFormer.setAttribute('type', 'text');
       inputNameFormer.setAttribute('id', 'inputNameFormerId');
       inputNameFormer.setAttribute('class', 'form-control');
+      inputNameFormer.setAttribute('name', 'formerName');
+      inputNameFormer.required = true
 
       //INPUT NAME FORMER EXPLAINATION
       // <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
@@ -356,10 +352,18 @@ $gantti = new Gantti($data, array(
       helpNameFormer.setAttribute('id', 'inputNameFormer-help')
       helpNameFormer.innerText="Saisir le prénom et nom du formateur"
 
+      //INPUT SUBMIT BUTTON
+      let submitNameFormer = document.createElement('button')
+      submitNameFormer.setAttribute('class', 'btn btn-primary')
+      submitNameFormer.setAttribute('type', 'submit')
+      submitNameFormer.innerText='Soumettre le formateur'
+
+     
       divTitle.appendChild(labelInputNameFormer)
       divTitle.appendChild(inputNameFormer)
       divTitle.appendChild(helpNameFormer)
       form.appendChild(divTitle)
+      form.appendChild(submitNameFormer)
 
     })
 
