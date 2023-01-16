@@ -170,15 +170,22 @@ $gantti = new Gantti($data, array(
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>placeholder</td>
-                <td>placeholder</td>
-            
-              </tr>
+       
+        
+        <?php foreach($trainerHome as $tH){
+          echo "<tr>";
+          echo "<td>".$tH["name_trainer"]."</td>";
+          echo "<td>".$tH["name_training"]."</td>";
+          echo "<td>".$tH["name_city"]."</td>";
+          echo "<td>".$tH["start_training"]."</td>";
+          echo "<td>".$tH["end_training"]."</td>";
+          echo "</tr>";
+        }
+
+    
+?>
+             
+         
               
             </tbody>
           </table>

@@ -66,6 +66,13 @@ if(isset($_GET['formerName'])){
   header('Location: ./index.php');
 }
 
+  /*****************************
+ * REQUEST TO GET THE TRAINER *
+ ******************************/
+
+ $trainerHome = $conn->prepare("SELECT id_trainer, name_trainer, name_training, start_training, end_training, name_city FROM ganttacha_trainers LEFT OUTER JOIN ganttacha_trainings ON id_trainer = id_trainer_training LEFT OUTER JOIN ganttacha_cities ON id_city_training = id_city");
+ $trainerHome->execute();
+ $trainerHome = $trainerHome->fetchAll();
 
 
 
