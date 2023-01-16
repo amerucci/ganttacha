@@ -35,7 +35,6 @@ foreach ($results as $result){
  $trainer->execute();
  $trainer = $trainer->fetch();
 
-
    /************************
  * REQUEST TO GET THE CITY *
  **************************/
@@ -56,5 +55,20 @@ foreach ($results as $result){
     'ville' => $city['name_city']
   );
 }
+
+/***************************
+ * REQUEST TO SAVE TRAINER *
+ ***************************/
+
+if(isset($_GET['formerName'])){
+  $trainer = $conn->prepare("INSERT INTO ganttacha_trainers (name_trainer) VALUES (?) ");
+  $trainer->execute([$_GET['formerName']]);
+  header('Location: ./index.php');
+}
+
+
+
+
+
 
 ?>

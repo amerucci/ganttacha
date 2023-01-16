@@ -125,6 +125,12 @@ $gantti = new Gantti($data, array(
               Ajouter un formateur
 
             </li>
+            <li class="nav-item" id="addCity" data-title="Ajouter un formateur">
+
+              <span data-feather="file" class="align-text-bottom"></span>
+              Ajouter une ville
+
+            </li>
           </ul>
 
 
@@ -133,7 +139,7 @@ $gantti = new Gantti($data, array(
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Dashboard</h1>
+          <h1 class="h2">Toutes les formations</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
               <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -150,16 +156,17 @@ $gantti = new Gantti($data, array(
         <?php echo $gantti ?>
 
 
-        <h2>Section title</h2>
+        <h2>Tous les formateurs</h2>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Formation en cours</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Debut</th>
+                <th scope="col">Fin</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -168,113 +175,11 @@ $gantti = new Gantti($data, array(
                 <td>random</td>
                 <td>data</td>
                 <td>placeholder</td>
-                <td>text</td>
-              </tr>
-              <tr>
-                <td>1,002</td>
                 <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>data</td>
-                <td>rich</td>
-                <td>dashboard</td>
-                <td>tabular</td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>information</td>
                 <td>placeholder</td>
-                <td>illustrative</td>
-                <td>data</td>
+            
               </tr>
-              <tr>
-                <td>1,004</td>
-                <td>text</td>
-                <td>random</td>
-                <td>layout</td>
-                <td>dashboard</td>
-              </tr>
-              <tr>
-                <td>1,005</td>
-                <td>dashboard</td>
-                <td>irrelevant</td>
-                <td>text</td>
-                <td>placeholder</td>
-              </tr>
-              <tr>
-                <td>1,006</td>
-                <td>dashboard</td>
-                <td>illustrative</td>
-                <td>rich</td>
-                <td>data</td>
-              </tr>
-              <tr>
-                <td>1,007</td>
-                <td>placeholder</td>
-                <td>tabular</td>
-                <td>information</td>
-                <td>irrelevant</td>
-              </tr>
-              <tr>
-                <td>1,008</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-              </tr>
-              <tr>
-                <td>1,009</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-              </tr>
-              <tr>
-                <td>1,010</td>
-                <td>data</td>
-                <td>rich</td>
-                <td>dashboard</td>
-                <td>tabular</td>
-              </tr>
-              <tr>
-                <td>1,011</td>
-                <td>information</td>
-                <td>placeholder</td>
-                <td>illustrative</td>
-                <td>data</td>
-              </tr>
-              <tr>
-                <td>1,012</td>
-                <td>text</td>
-                <td>placeholder</td>
-                <td>layout</td>
-                <td>dashboard</td>
-              </tr>
-              <tr>
-                <td>1,013</td>
-                <td>dashboard</td>
-                <td>irrelevant</td>
-                <td>text</td>
-                <td>visual</td>
-              </tr>
-              <tr>
-                <td>1,014</td>
-                <td>dashboard</td>
-                <td>illustrative</td>
-                <td>rich</td>
-                <td>data</td>
-              </tr>
-              <tr>
-                <td>1,015</td>
-                <td>random</td>
-                <td>tabular</td>
-                <td>information</td>
-                <td>text</td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
@@ -324,6 +229,10 @@ $gantti = new Gantti($data, array(
 
     //Function when clickin on addin trainer
     document.querySelector("#addTrainer").addEventListener("click", function() {
+
+      //Erase content
+      document.querySelector("#modalForm").innerHTML=""
+
       //alert(document.getElementById("addTraining").getAttribute('data-title'))
       modal.style.display = "block";
       document.querySelector("#modalTitle").innerHTML = document.getElementById("addTrainer").getAttribute('data-title')
@@ -356,6 +265,8 @@ $gantti = new Gantti($data, array(
       let submitNameFormer = document.createElement('button')
       submitNameFormer.setAttribute('class', 'btn btn-primary')
       submitNameFormer.setAttribute('type', 'submit')
+      submitNameFormer.setAttribute('name', 'saveFormer')
+      submitNameFormer.setAttribute('value', 'true')
       submitNameFormer.innerText='Soumettre le formateur'
 
      
