@@ -31,6 +31,7 @@ $gantti = new Gantti($data, array(
 
   <link rel="stylesheet" href="styles/css/gantti.css" />
   <link rel="stylesheet" href="styles/css/screen.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 
 
@@ -170,23 +171,24 @@ $gantti = new Gantti($data, array(
               </tr>
             </thead>
             <tbody>
-       
-        
-        <?php foreach($trainerHome as $tH){
-          echo "<tr>";
-          echo "<td>".$tH["name_trainer"]."</td>";
-          echo "<td>".$tH["name_training"]."</td>";
-          echo "<td>".$tH["name_city"]."</td>";
-          echo "<td>".$tH["start_training"]."</td>";
-          echo "<td>".$tH["end_training"]."</td>";
-          echo "</tr>";
-        }
 
-    
-?>
-             
-         
-              
+
+              <?php foreach ($trainerHome as $tH) {
+                echo "<tr>";
+                echo "<td>" . $tH["name_trainer"] . "</td>";
+                echo "<td>" . $tH["name_training"] . "</td>";
+                echo "<td>" . $tH["name_city"] . "</td>";
+                echo "<td>" . $tH["start_training"] . "</td>";
+                echo "<td>" . $tH["end_training"] . "</td>";
+                echo '<td><span class="material-symbols-outlined deleteBtn" data-id="' . $tH['id_trainer'] . '" data-name_former="' . $tH['name_trainer'] . '">delete</span></td>';
+                echo "</tr>";
+              }
+
+
+              ?>
+
+
+
             </tbody>
           </table>
         </div>
@@ -237,8 +239,7 @@ $gantti = new Gantti($data, array(
     //Function when clickin on addin trainer
     document.querySelector("#addTrainer").addEventListener("click", function() {
 
-      //Erase content
-      document.querySelector("#modalForm").innerHTML=""
+  
 
       //alert(document.getElementById("addTraining").getAttribute('data-title'))
       modal.style.display = "block";
@@ -266,7 +267,7 @@ $gantti = new Gantti($data, array(
       let helpNameFormer = document.createElement('div');
       helpNameFormer.setAttribute('class', 'form-text')
       helpNameFormer.setAttribute('id', 'inputNameFormer-help')
-      helpNameFormer.innerText="Saisir le prénom et nom du formateur"
+      helpNameFormer.innerText = "Saisir le prénom et nom du formateur"
 
       //INPUT SUBMIT BUTTON
       let submitNameFormer = document.createElement('button')
@@ -274,9 +275,9 @@ $gantti = new Gantti($data, array(
       submitNameFormer.setAttribute('type', 'submit')
       submitNameFormer.setAttribute('name', 'saveFormer')
       submitNameFormer.setAttribute('value', 'true')
-      submitNameFormer.innerText='Soumettre le formateur'
+      submitNameFormer.innerText = 'Soumettre le formateur'
 
-     
+
       divTitle.appendChild(labelInputNameFormer)
       divTitle.appendChild(inputNameFormer)
       divTitle.appendChild(helpNameFormer)
@@ -289,14 +290,64 @@ $gantti = new Gantti($data, array(
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
       modal.style.display = "none";
+          //Erase content
+          document.querySelector("#modalForm").innerHTML = ""
     }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target == modal) {
         modal.style.display = "none";
+            //Erase content
+      document.querySelector("#modalForm").innerHTML = ""
       }
     }
+
+    //DELETING FORMER
+    let deleteBtns = document.querySelectorAll('.deleteBtn')
+    console.log(deleteBtns)
+    deleteBtns.forEach(element => {
+      element.addEventListener('click', function() {
+        modal.style.display = "block";
+        document.querySelector("#modalTitle").innerHTML = 'Suppression'
+        let form = document.querySelector("#modalForm")
+        let divTitle = document.createElement('div');
+        divTitle.className = "mb-3"
+        let divMessage = document.createElement('div')
+        divMessage.setAttribute('class', 'alert alert-danger')
+        divMessage.innerHTML = "Attention vous êtes sur le point de supprimer le formateur<br/><b> "+element.getAttribute('data-name_former')+"</b>"
+        
+        //INTERACTION BUTTON
+        let interractionButtons = document.createElement('div');
+        interractionButtons.className = "mb-2"
+        let cancelButton = document.createElement('button')
+        cancelButton.setAttribute('type', 'button')
+        cancelButton.setAttribute('class', 'btn btn-light')
+        cancelButton.textContent = "Annuler"
+        cancelButton.addEventListener('click', function(){
+          modal.style.display = "none"
+          document.querySelector("#modalForm").innerHTML = ""
+        })
+
+        let confirmButton = document.createElement('button')
+        confirmButton.setAttribute('type', 'submit')
+        confirmButton.setAttribute('class', 'btn btn-danger ms-3')
+        confirmButton.setAttribute('name', 'toDelete')
+        confirmButton.textContent = "Confirmer"
+        confirmButton.value = element.getAttribute('data-id')
+
+      
+        
+        form.appendChild(divMessage)  
+        interractionButtons.appendChild(cancelButton)
+        interractionButtons.appendChild(confirmButton)
+        form.appendChild(interractionButtons)
+        form.appendChild(divTitle)
+        form.appendChild(submitNameFormer)
+   
+      })
+
+    });
   </script>
 
   <script src="assets/dist/js/bootstrap.bundle.min.js"></script>

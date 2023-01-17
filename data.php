@@ -66,6 +66,17 @@ if(isset($_GET['formerName'])){
   header('Location: ./index.php');
 }
 
+   /******************************
+ * REQUEST TO DELETE THE TRAINER *
+ ********************************/
+
+ if(isset($_GET['toDelete'])){
+ $trainer = $conn->prepare("DELETE FROM ganttacha_trainers WHERE id_trainer = ?");
+ $trainer->execute([$_GET['toDelete']]);
+ header('Location: ./index.php');
+ }
+ //var_dump($trainerHome);
+
   /*****************************
  * REQUEST TO GET THE TRAINER *
  ******************************/
@@ -73,6 +84,9 @@ if(isset($_GET['formerName'])){
  $trainerHome = $conn->prepare("SELECT id_trainer, name_trainer, name_training, start_training, end_training, name_city FROM ganttacha_trainers LEFT OUTER JOIN ganttacha_trainings ON id_trainer = id_trainer_training LEFT OUTER JOIN ganttacha_cities ON id_city_training = id_city");
  $trainerHome->execute();
  $trainerHome = $trainerHome->fetchAll();
+ //var_dump($trainerHome);
+
+
 
 
 
