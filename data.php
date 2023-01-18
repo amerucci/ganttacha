@@ -23,6 +23,14 @@ try {
   $alltrainers->execute();
   $resultsAllTrainers = $alltrainers->fetchAll();
 
+/******************************
+ * START GET ALL THE CITIES *
+ ******************************/
+
+ $allcities = $conn->prepare("SELECT * FROM ganttacha_cities");
+ $allcities->execute();
+ $resultsAllCities = $allcities->fetchAll();
+
 /************************************
  * GET INFORMATIONS ABOUT TRAININGS *
  ************************************/

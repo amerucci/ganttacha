@@ -96,8 +96,9 @@ $gantti = new Gantti($data, array(
 
 <body>
 
-<!-- <input type="hidden" id="test" value="<?php echo json_encode($resultsAllTrainers); ?>"> -->
-<input type="hidden" id="myText" value='<?php echo json_encode($resultsAllTrainers); ?>'>
+  <!-- <input type="hidden" id="test" value="<?php echo json_encode($resultsAllTrainers); ?>"> -->
+  <input type="hidden" id="myText" value='<?php echo json_encode($resultsAllTrainers); ?>'>
+  <input type="hidden" id="resultsAllCities" value='<?php echo json_encode($resultsAllCities); ?>'>
 
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">GanTTacha</a>
@@ -216,13 +217,16 @@ $gantti = new Gantti($data, array(
         </form>
       </div>
     </div>
-   
-  </div>
-  
-  <script>
 
-let allFormers = document.getElementById("myText").value;
-let allFormersArray = JSON.parse(allFormers);
+  </div>
+
+  <script>
+    let allFormers = document.getElementById("myText").value;
+    let allFormersArray = JSON.parse(allFormers);
+
+    let allCities = document.getElementById("resultsAllCities").value;
+    let allCitiesArray = JSON.parse(allCities);
+    
 
 
     // Get the modal
@@ -296,11 +300,11 @@ let allFormersArray = JSON.parse(allFormers);
       SelectFormerTraining.required = true
 
       //INPUT SELECT FORMER TRAINING
-      
+
       allFormersArray.forEach(former => {
         let optionFormerTraining = document.createElement('option');
-          optionFormerTraining.value = former['id_trainer']
-          optionFormerTraining.text =  former['name_trainer']
+        optionFormerTraining.value = former['id_trainer']
+        optionFormerTraining.text = former['name_trainer']
         SelectFormerTraining.appendChild(optionFormerTraining)
       });
 
@@ -314,15 +318,15 @@ let allFormersArray = JSON.parse(allFormers);
       let SelectCityTraining = document.createElement('select');
       SelectCityTraining.setAttribute('id', 'SelectCityTraining');
       SelectCityTraining.setAttribute('class', 'form-select');
-      SelectCityTraining.setAttribute('name', 'idformer');
+      SelectCityTraining.setAttribute('name', 'idcity');
       SelectCityTraining.required = true
 
       //INPUT SELECT CITY TRAINING
-      
-      allFormersArray.forEach(former => {
+
+      allCitiesArray.forEach(city => {
         let optionCityTraining = document.createElement('option');
-        optionCityTraining.value = former['id_trainer']
-        optionCityTraining.text =  former['name_trainer']
+        optionCityTraining.value = city['id_city']
+        optionCityTraining.text = city['name_city']
         SelectCityTraining.appendChild(optionCityTraining)
       });
 
@@ -345,7 +349,6 @@ let allFormersArray = JSON.parse(allFormers);
 
       divTitle.appendChild(labelSelectFormerTraining)
       divTitle.appendChild(SelectFormerTraining)
-
       divTitle.appendChild(labelSelectCityTraining)
       divTitle.appendChild(SelectCityTraining)
 
