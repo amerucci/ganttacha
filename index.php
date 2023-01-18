@@ -126,7 +126,7 @@ $gantti = new Gantti($data, array(
               Ajouter un formateur
 
             </li>
-            <li class="nav-item" id="addCity" data-title="Ajouter un formateur">
+            <li class="nav-item" id="addCity" data-title="Ajouter une ville">
 
               <span data-feather="file" class="align-text-bottom"></span>
               Ajouter une ville
@@ -174,14 +174,16 @@ $gantti = new Gantti($data, array(
 
 
               <?php foreach ($trainerHome as $tH) {
-                echo "<tr>";
-                echo "<td>" . $tH["name_trainer"] . "</td>";
-                echo "<td>" . $tH["name_training"] . "</td>";
-                echo "<td>" . $tH["name_city"] . "</td>";
-                echo "<td>" . $tH["start_training"] . "</td>";
-                echo "<td>" . $tH["end_training"] . "</td>";
-                echo '<td><span class="material-symbols-outlined deleteBtn" data-id="' . $tH['id_trainer'] . '" data-name_former="' . $tH['name_trainer'] . '">delete</span></td>';
-                echo "</tr>";
+                if ($tH['id_trainer'] != "1") {
+                  echo "<tr>";
+                  echo "<td>" . $tH["name_trainer"] . "</td>";
+                  echo "<td>" . $tH["name_training"] . "</td>";
+                  echo "<td>" . $tH["name_city"] . "</td>";
+                  echo "<td>" . $tH["start_training"] . "</td>";
+                  echo "<td>" . $tH["end_training"] . "</td>";
+                  echo '<td><span class="material-symbols-outlined deleteBtn" data-id="' . $tH['id_trainer'] . '" data-name_former="' . $tH['name_trainer'] . '">delete</span></td>';
+                  echo "</tr>";
+                }
               }
 
 
@@ -207,6 +209,7 @@ $gantti = new Gantti($data, array(
       <span class="close">&times;</span>
       <div id="modalContent">
         <form id="modalForm">
+          
         </form>
       </div>
     </div>
@@ -223,11 +226,6 @@ $gantti = new Gantti($data, array(
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal 
-    // btn.onclick = function() {
-    //   modal.style.display = "block";
-
-    // }
 
     //Function when clickin on addin training
     document.querySelector("#addTraining").addEventListener("click", function() {
@@ -235,12 +233,8 @@ $gantti = new Gantti($data, array(
       modal.style.display = "block";
       document.querySelector("#modalTitle").innerHTML = document.getElementById("addTraining").getAttribute('data-title')
     })
-
     //Function when clickin on addin trainer
     document.querySelector("#addTrainer").addEventListener("click", function() {
-
-  
-
       //alert(document.getElementById("addTraining").getAttribute('data-title'))
       modal.style.display = "block";
       document.querySelector("#modalTitle").innerHTML = document.getElementById("addTrainer").getAttribute('data-title')
@@ -287,19 +281,66 @@ $gantti = new Gantti($data, array(
     })
 
 
+    //Function when clickin on adding city
+    document.querySelector("#addCity").addEventListener("click", function() {
+      //alert(document.getElementById("addTraining").getAttribute('data-title'))
+      modal.style.display = "block";
+      document.querySelector("#modalTitle").innerHTML = document.getElementById("addCity").getAttribute('data-title')
+      let form = document.querySelector("#modalForm")
+      let divTitle = document.createElement('div');
+      divTitle.className = "mb-3"
+
+      //LABEL INPUT NAME FORMER
+      let labelInputNameFormer = document.createElement('label');
+      labelInputNameFormer.setAttribute('for', 'inputNameFormerId')
+      labelInputNameFormer.setAttribute('class', 'form-label')
+      labelInputNameFormer.innerText = "Ville"
+
+      //INPUT NAME FORMER
+      let inputNameFormer = document.createElement('input');
+      inputNameFormer.setAttribute('type', 'text');
+      inputNameFormer.setAttribute('id', 'inputNameFormerId');
+      inputNameFormer.setAttribute('class', 'form-control');
+      inputNameFormer.setAttribute('name', 'trainingCity');
+      inputNameFormer.required = true
+
+      //INPUT NAME FORMER EXPLAINATION
+      // <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      let helpNameFormer = document.createElement('div');
+      helpNameFormer.setAttribute('class', 'form-text')
+      helpNameFormer.setAttribute('id', 'inputNameFormer-help')
+      helpNameFormer.innerText = "Ville de la formation"
+
+      //INPUT SUBMIT BUTTON
+      let submitNameFormer = document.createElement('button')
+      submitNameFormer.setAttribute('class', 'btn btn-primary')
+      submitNameFormer.setAttribute('type', 'submit')
+      submitNameFormer.setAttribute('name', 'saveCity')
+      submitNameFormer.setAttribute('value', 'true')
+      submitNameFormer.innerText = 'Créer la ville'
+
+
+      divTitle.appendChild(labelInputNameFormer)
+      divTitle.appendChild(inputNameFormer)
+      divTitle.appendChild(helpNameFormer)
+      form.appendChild(divTitle)
+      form.appendChild(submitNameFormer)
+
+    })
+
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
       modal.style.display = "none";
-          //Erase content
-          document.querySelector("#modalForm").innerHTML = ""
+      //Erase content
+      document.querySelector("#modalForm").innerHTML = ""
     }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target == modal) {
         modal.style.display = "none";
-            //Erase content
-      document.querySelector("#modalForm").innerHTML = ""
+        //Erase content
+        document.querySelector("#modalForm").innerHTML = ""
       }
     }
 
@@ -315,8 +356,8 @@ $gantti = new Gantti($data, array(
         divTitle.className = "mb-3"
         let divMessage = document.createElement('div')
         divMessage.setAttribute('class', 'alert alert-danger')
-        divMessage.innerHTML = "Attention vous êtes sur le point de supprimer le formateur<br/><b> "+element.getAttribute('data-name_former')+"</b>"
-        
+        divMessage.innerHTML = "Attention vous êtes sur le point de supprimer le formateur<br/><b> " + element.getAttribute('data-name_former') + "</b>"
+
         //INTERACTION BUTTON
         let interractionButtons = document.createElement('div');
         interractionButtons.className = "mb-2"
@@ -324,7 +365,7 @@ $gantti = new Gantti($data, array(
         cancelButton.setAttribute('type', 'button')
         cancelButton.setAttribute('class', 'btn btn-light')
         cancelButton.textContent = "Annuler"
-        cancelButton.addEventListener('click', function(){
+        cancelButton.addEventListener('click', function() {
           modal.style.display = "none"
           document.querySelector("#modalForm").innerHTML = ""
         })
@@ -336,15 +377,15 @@ $gantti = new Gantti($data, array(
         confirmButton.textContent = "Confirmer"
         confirmButton.value = element.getAttribute('data-id')
 
-      
-        
-        form.appendChild(divMessage)  
+
+
+        form.appendChild(divMessage)
         interractionButtons.appendChild(cancelButton)
         interractionButtons.appendChild(confirmButton)
         form.appendChild(interractionButtons)
         form.appendChild(divTitle)
         form.appendChild(submitNameFormer)
-   
+
       })
 
     });

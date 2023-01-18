@@ -71,6 +71,14 @@ if(isset($_GET['formerName'])){
  ********************************/
 
  if(isset($_GET['toDelete'])){
+
+$training = $conn->prepare("UPDATE ganttacha_trainings
+SET id_trainer_training = '1'
+WHERE id_trainer_training = ?
+
+");
+$training->execute([$_GET['toDelete']]);
+
  $trainer = $conn->prepare("DELETE FROM ganttacha_trainers WHERE id_trainer = ?");
  $trainer->execute([$_GET['toDelete']]);
  header('Location: ./index.php');
@@ -86,9 +94,15 @@ if(isset($_GET['formerName'])){
  $trainerHome = $trainerHome->fetchAll();
  //var_dump($trainerHome);
 
+/************************
+ * REQUEST TO SAVE CITY *
+ ************************/
 
-
-
+ if(isset($_GET['trainingCity'])){
+  $trainer = $conn->prepare("INSERT INTO ganttacha_cities (name_city) VALUES (?) ");
+  $trainer->execute([$_GET['trainingCity']]);
+  header('Location: ./index.php');
+}
 
 
 
