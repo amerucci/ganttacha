@@ -283,7 +283,7 @@ $gantti = new Gantti($data, array(
       inputEnd.setAttribute('type', 'date');
       inputEnd.setAttribute('id', 'inputEnd');
       inputEnd.setAttribute('class', 'form-control');
-      inputEnd.setAttribute('name', 'formingStart');
+      inputEnd.setAttribute('name', 'formingEnd');
       inputEnd.required = true
 
       //LABEL INPUT SELECT FORMER TRAINING

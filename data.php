@@ -82,6 +82,16 @@ if(isset($_GET['formerName'])){
   header('Location: ./index.php');
 }
 
+/****************************
+ * REQUEST TO SAVE TRAINING *
+ ****************************/
+
+ if(isset($_GET['saveTraining'])){
+  $trainer = $conn->prepare("INSERT INTO ganttacha_trainings (name_training, start_training, 	end_training, id_trainer_training, id_city_training  ) VALUES (?, ?, ?, ?, ?) ");
+  $trainer->execute([$_GET['formingName'], $_GET['formingStart'], $_GET['formingEnd'], $_GET['idformer'], $_GET['idcity']]);
+ // header('Location: ./index.php');
+}
+
    /******************************
  * REQUEST TO DELETE THE TRAINER *
  ********************************/
