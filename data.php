@@ -15,6 +15,14 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 
+/******************************
+ * START GET ALL THE TRAINERS *
+ ******************************/
+
+  $alltrainers = $conn->prepare("SELECT * FROM ganttacha_trainers");
+  $alltrainers->execute();
+  $resultsAllTrainers = $alltrainers->fetchAll();
+
 /************************************
  * GET INFORMATIONS ABOUT TRAININGS *
  ************************************/
@@ -103,7 +111,3 @@ $training->execute([$_GET['toDelete']]);
   $trainer->execute([$_GET['trainingCity']]);
   header('Location: ./index.php');
 }
-
-
-
-?>

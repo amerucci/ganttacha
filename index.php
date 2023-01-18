@@ -96,6 +96,9 @@ $gantti = new Gantti($data, array(
 
 <body>
 
+<!-- <input type="hidden" id="test" value="<?php echo json_encode($resultsAllTrainers); ?>"> -->
+<input type="hidden" id="myText" value='<?php echo json_encode($resultsAllTrainers); ?>'>
+
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">GanTTacha</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -209,23 +212,23 @@ $gantti = new Gantti($data, array(
       <span class="close">&times;</span>
       <div id="modalContent">
         <form id="modalForm">
-          
+
         </form>
       </div>
     </div>
-
+   
   </div>
-
+  
   <script>
+
+let allFormers = document.getElementById("myText").value;
+let allFormersArray = JSON.parse(allFormers);
+
+
     // Get the modal
     var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
     var btn = document.getElementById("addTraining");
-
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-
 
     //Function when clickin on addin training
     document.querySelector("#addTraining").addEventListener("click", function() {
@@ -248,13 +251,14 @@ $gantti = new Gantti($data, array(
       inputNameFormer.setAttribute('id', 'inputNameForming');
       inputNameFormer.setAttribute('class', 'form-control');
       inputNameFormer.setAttribute('name', 'formingName');
+      inputNameFormer.setAttribute('placeholder', 'Nom de la formation');
       inputNameFormer.required = true
 
       //LABEL INPUT START TRAINING
       let labelInputStart = document.createElement('label');
       labelInputStart.setAttribute('for', 'inputStart')
       labelInputStart.setAttribute('class', 'form-label')
-      labelInputStart.innerText = "Nom de la formation"
+      labelInputStart.innerText = "Date de début de formation"
 
       //INPUT START TRAINING
       let inputStart = document.createElement('input');
@@ -264,11 +268,70 @@ $gantti = new Gantti($data, array(
       inputStart.setAttribute('name', 'formingStart');
       inputStart.required = true
 
+      //LABEL INPUT START TRAINING
+      let labelInputEnd = document.createElement('label');
+      labelInputEnd.setAttribute('for', 'inputEnd')
+      labelInputEnd.setAttribute('class', 'form-label')
+      labelInputEnd.innerText = "Date de fin de formation"
+
+      //INPUT START TRAINING
+      let inputEnd = document.createElement('input');
+      inputEnd.setAttribute('type', 'date');
+      inputEnd.setAttribute('id', 'inputEnd');
+      inputEnd.setAttribute('class', 'form-control');
+      inputEnd.setAttribute('name', 'formingStart');
+      inputEnd.required = true
+
+      //LABEL INPUT SELECT FORMER TRAINING
+      let labelSelectFormerTraining = document.createElement('label');
+      labelSelectFormerTraining.setAttribute('for', 'SelectFormerTraining')
+      labelSelectFormerTraining.setAttribute('class', 'form-label')
+      labelSelectFormerTraining.innerText = "Formateur"
+
+      //INPUT SELECT FORMER TRAINING
+      let SelectFormerTraining = document.createElement('select');
+      SelectFormerTraining.setAttribute('id', 'SelectFormerTraining');
+      SelectFormerTraining.setAttribute('class', 'form-select');
+      SelectFormerTraining.setAttribute('name', 'idformer');
+      SelectFormerTraining.required = true
+
+      //INPUT SELECT FORMER TRAINING
+      
+      allFormersArray.forEach(former => {
+        let optionFormerTraining = document.createElement('option');
+          optionFormerTraining.value = former['id_trainer']
+          optionFormerTraining.text =  former['name_trainer']
+        SelectFormerTraining.appendChild(optionFormerTraining)
+      });
+
+      //LABEL INPUT SELECT CITY TRAINING
+      let labelSelectCityTraining = document.createElement('label');
+      labelSelectCityTraining.setAttribute('for', 'SelectCityTraining')
+      labelSelectCityTraining.setAttribute('class', 'form-label')
+      labelSelectCityTraining.innerText = "Formateur"
+
+      //INPUT SELECT CITY TRAINING
+      let SelectCityTraining = document.createElement('select');
+      SelectCityTraining.setAttribute('id', 'SelectCityTraining');
+      SelectCityTraining.setAttribute('class', 'form-select');
+      SelectCityTraining.setAttribute('name', 'idformer');
+      SelectCityTraining.required = true
+
+      //INPUT SELECT CITY TRAINING
+      
+      allFormersArray.forEach(former => {
+        let optionCityTraining = document.createElement('option');
+        optionCityTraining.value = former['id_trainer']
+        optionCityTraining.text =  former['name_trainer']
+        SelectCityTraining.appendChild(optionCityTraining)
+      });
+
+
       //INPUT SUBMIT BUTTON
       let submitNameFormer = document.createElement('button')
       submitNameFormer.setAttribute('class', 'btn btn-primary')
       submitNameFormer.setAttribute('type', 'submit')
-      submitNameFormer.setAttribute('name', 'saveCity')
+      submitNameFormer.setAttribute('name', 'saveTraining')
       submitNameFormer.setAttribute('value', 'true')
       submitNameFormer.innerText = 'Ajouter la formation'
 
@@ -277,6 +340,15 @@ $gantti = new Gantti($data, array(
       divTitle.appendChild(inputNameFormer)
       divTitle.appendChild(labelInputStart)
       divTitle.appendChild(inputStart)
+      divTitle.appendChild(labelInputEnd)
+      divTitle.appendChild(inputEnd)
+
+      divTitle.appendChild(labelSelectFormerTraining)
+      divTitle.appendChild(SelectFormerTraining)
+
+      divTitle.appendChild(labelSelectCityTraining)
+      divTitle.appendChild(SelectCityTraining)
+
       form.appendChild(divTitle)
       form.appendChild(submitNameFormer)
     })
