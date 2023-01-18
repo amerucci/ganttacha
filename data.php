@@ -11,7 +11,7 @@ $password = "root";
 try {
   $conn = new PDO("mysql:host=$servername;dbname=ganttacha", $username, $password);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
+} catch (PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
 
@@ -19,54 +19,55 @@ try {
  * START GET ALL THE TRAINERS *
  ******************************/
 
-  $alltrainers = $conn->prepare("SELECT * FROM ganttacha_trainers");
-  $alltrainers->execute();
-  $resultsAllTrainers = $alltrainers->fetchAll();
+$alltrainers = $conn->prepare("SELECT * FROM ganttacha_trainers");
+$alltrainers->execute();
+$resultsAllTrainers = $alltrainers->fetchAll();
 
 /******************************
  * START GET ALL THE CITIES *
  ******************************/
 
- $allcities = $conn->prepare("SELECT * FROM ganttacha_cities");
- $allcities->execute();
- $resultsAllCities = $allcities->fetchAll();
+$allcities = $conn->prepare("SELECT * FROM ganttacha_cities");
+$allcities->execute();
+$resultsAllCities = $allcities->fetchAll();
 
 /************************************
  * GET INFORMATIONS ABOUT TRAININGS *
  ************************************/
 
- $trainings = $conn->prepare("SELECT * FROM ganttacha_trainings");
- $trainings->execute();
- $results = $trainings->fetchAll();
+$trainings = $conn->prepare("SELECT * FROM ganttacha_trainings");
+$trainings->execute();
+$results = $trainings->fetchAll();
 
- $data = array();
+$data = array();
 
-foreach ($results as $result){
+foreach ($results as $result) {
 
   /*****************************
- * REQUEST TO GET THE TRAINER *
- ******************************/
+   * REQUEST TO GET THE TRAINER *
+   ******************************/
 
- $trainer = $conn->prepare("SELECT name_trainer FROM ganttacha_trainers WHERE id_trainer=".$result['id_trainer_training']."");
- $trainer->execute();
- $trainer = $trainer->fetch();
+  $trainer = $conn->prepare("SELECT name_trainer FROM ganttacha_trainers WHERE id_trainer=" . $result['id_trainer_training'] . "");
+  $trainer->execute();
+  $trainer = $trainer->fetch();
 
-   /************************
- * REQUEST TO GET THE CITY *
- **************************/
+  /************************
+   * REQUEST TO GET THE CITY *
+   **************************/
 
- $city = $conn->prepare("SELECT name_city FROM ganttacha_cities WHERE id_city=".$result['id_city_training']."");
- $city->execute();
- $city = $city->fetch();
+  $city = $conn->prepare("SELECT name_city FROM ganttacha_cities WHERE id_city=" . $result['id_city_training'] . "");
+  $city->execute();
+  $city = $city->fetch();
 
-/***********************
- * FILL THE DATA ARRAY * 
- ***********************/
+  /***********************
+   * FILL THE DATA ARRAY * 
+   ***********************/
 
   $data[] = array(
+    'id' => $result['id_training'],
     'label' => $result['name_training'],
     'formateur' => $trainer['name_trainer'],
-    'start' => $result['start_training'], 
+    'start' => $result['start_training'],
     'end'   => $result['end_training'],
     'ville' => $city['name_city']
   );
@@ -76,7 +77,7 @@ foreach ($results as $result){
  * REQUEST TO SAVE TRAINER *
  ***************************/
 
-if(isset($_GET['formerName'])){
+if (isset($_GET['formerName'])) {
   $trainer = $conn->prepare("INSERT INTO ganttacha_trainers (name_trainer) VALUES (?) ");
   $trainer->execute([$_GET['formerName']]);
   header('Location: ./index.php');
@@ -86,45 +87,45 @@ if(isset($_GET['formerName'])){
  * REQUEST TO SAVE TRAINING *
  ****************************/
 
- if(isset($_GET['saveTraining'])){
+if (isset($_GET['saveTraining'])) {
   $trainer = $conn->prepare("INSERT INTO ganttacha_trainings (name_training, start_training, 	end_training, id_trainer_training, id_city_training  ) VALUES (?, ?, ?, ?, ?) ");
   $trainer->execute([$_GET['formingName'], $_GET['formingStart'], $_GET['formingEnd'], $_GET['idformer'], $_GET['idcity']]);
- // header('Location: ./index.php');
+  header('Location: ./index.php');
 }
 
-   /******************************
+/******************************
  * REQUEST TO DELETE THE TRAINER *
  ********************************/
 
- if(isset($_GET['toDelete'])){
+if (isset($_GET['toDelete'])) {
 
-$training = $conn->prepare("UPDATE ganttacha_trainings
+  $training = $conn->prepare("UPDATE ganttacha_trainings
 SET id_trainer_training = '1'
 WHERE id_trainer_training = ?
 
 ");
-$training->execute([$_GET['toDelete']]);
+  $training->execute([$_GET['toDelete']]);
 
- $trainer = $conn->prepare("DELETE FROM ganttacha_trainers WHERE id_trainer = ?");
- $trainer->execute([$_GET['toDelete']]);
- header('Location: ./index.php');
- }
- //var_dump($trainerHome);
+  $trainer = $conn->prepare("DELETE FROM ganttacha_trainers WHERE id_trainer = ?");
+  $trainer->execute([$_GET['toDelete']]);
+  header('Location: ./index.php');
+}
+//var_dump($trainerHome);
 
-  /*****************************
+/*****************************
  * REQUEST TO GET THE TRAINER *
  ******************************/
 
- $trainerHome = $conn->prepare("SELECT id_trainer, name_trainer, name_training, start_training, end_training, name_city FROM ganttacha_trainers LEFT OUTER JOIN ganttacha_trainings ON id_trainer = id_trainer_training LEFT OUTER JOIN ganttacha_cities ON id_city_training = id_city");
- $trainerHome->execute();
- $trainerHome = $trainerHome->fetchAll();
- //var_dump($trainerHome);
+$trainerHome = $conn->prepare("SELECT id_trainer, name_trainer, name_training, start_training, end_training, name_city FROM ganttacha_trainers LEFT OUTER JOIN ganttacha_trainings ON id_trainer = id_trainer_training LEFT OUTER JOIN ganttacha_cities ON id_city_training = id_city");
+$trainerHome->execute();
+$trainerHome = $trainerHome->fetchAll();
+//var_dump($trainerHome);
 
 /************************
  * REQUEST TO SAVE CITY *
  ************************/
 
- if(isset($_GET['trainingCity'])){
+if (isset($_GET['trainingCity'])) {
   $trainer = $conn->prepare("INSERT INTO ganttacha_cities (name_city) VALUES (?) ");
   $trainer->execute([$_GET['trainingCity']]);
   header('Location: ./index.php');
