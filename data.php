@@ -47,7 +47,7 @@ foreach ($results as $result) {
    * REQUEST TO GET THE TRAINER *
    ******************************/
 
-  $trainer = $conn->prepare("SELECT name_trainer FROM ganttacha_trainers WHERE id_trainer=" . $result['id_trainer_training'] . "");
+  $trainer = $conn->prepare("SELECT * FROM ganttacha_trainers WHERE id_trainer=" . $result['id_trainer_training'] . "");
   $trainer->execute();
   $trainer = $trainer->fetch();
 
@@ -55,7 +55,7 @@ foreach ($results as $result) {
    * REQUEST TO GET THE CITY *
    **************************/
 
-  $city = $conn->prepare("SELECT name_city FROM ganttacha_cities WHERE id_city=" . $result['id_city_training'] . "");
+  $city = $conn->prepare("SELECT * FROM ganttacha_cities WHERE id_city=" . $result['id_city_training'] . "");
   $city->execute();
   $city = $city->fetch();
 
@@ -69,7 +69,9 @@ foreach ($results as $result) {
     'formateur' => $trainer['name_trainer'],
     'start' => $result['start_training'],
     'end'   => $result['end_training'],
-    'ville' => $city['name_city']
+    'ville' => $city['name_city'],
+    'idville' => $city['id_city'],
+    'ifformer' => $trainer['id_trainer'],
   );
 }
 

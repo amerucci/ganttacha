@@ -14,10 +14,11 @@
     //INFO ABOUT FORMING
 
     let formingsBlock = document.querySelectorAll('.gantt-block')
+    
     formingsBlock.forEach(forming => {
       forming.addEventListener('click',function() {
         modal.style.display = "block";
-      document.querySelector("#modalTitle").innerHTML = this.getAttribute('forming-title')
+      document.querySelector("#modalTitle").innerHTML = "Informations sur la formation"
       let form = document.querySelector("#modalForm")
       let divTitle = document.createElement('div');
       divTitle.className = "mb-3"
@@ -54,18 +55,7 @@
       inputStart.setAttribute('name', 'formingStart');
       inputStart.required = true
       inputStart.disabled = true
-     inputStart.value = convertDate(this.getAttribute('forming-start'))
-
-   
-
-     
-    
-      
-   
-
-
-
-
+    inputStart.value = convertDate(this.getAttribute('forming-start'))
 
       //LABEL INPUT START TRAINING
       let labelInputEnd = document.createElement('label');
@@ -80,6 +70,8 @@
       inputEnd.setAttribute('class', 'form-control');
       inputEnd.setAttribute('name', 'formingEnd');
       inputEnd.required = true
+      inputEnd.disabled = true
+      inputEnd.value = convertDate(this.getAttribute('forming-end'))
 
       //LABEL INPUT SELECT FORMER TRAINING
       let labelSelectFormerTraining = document.createElement('label');
@@ -93,14 +85,22 @@
       SelectFormerTraining.setAttribute('class', 'form-select');
       SelectFormerTraining.setAttribute('name', 'idformer');
       SelectFormerTraining.required = true
+      SelectFormerTraining.disabled = true
+
 
       //INPUT SELECT FORMER TRAINING
 
       allFormersArray.forEach(former => {
+        let selectedFormer = this.getAttribute("forming-id-former")
         let optionFormerTraining = document.createElement('option');
         optionFormerTraining.value = former['id_trainer']
         optionFormerTraining.text = former['name_trainer']
         SelectFormerTraining.appendChild(optionFormerTraining)
+        console.log(selectedFormer + "->" +former['id_trainer'])
+        if(former['id_trainer'] === selectedFormer){
+            optionFormerTraining.selected=true
+            console.log("trouvé")
+        }
       });
 
       //LABEL INPUT SELECT CITY TRAINING
@@ -110,29 +110,62 @@
       labelSelectCityTraining.innerText = "Formateur"
 
       //INPUT SELECT CITY TRAINING
+
       let SelectCityTraining = document.createElement('select');
       SelectCityTraining.setAttribute('id', 'SelectCityTraining');
       SelectCityTraining.setAttribute('class', 'form-select');
       SelectCityTraining.setAttribute('name', 'idcity');
       SelectCityTraining.required = true
+      SelectCityTraining.disabled = true
+     
 
       //INPUT SELECT CITY TRAINING
-
+      let selectedCity = this.getAttribute("forming-id-city")
       allCitiesArray.forEach(city => {
         let optionCityTraining = document.createElement('option');
         optionCityTraining.value = city['id_city']
         optionCityTraining.text = city['name_city']
         SelectCityTraining.appendChild(optionCityTraining)
+        if(city['id_city'] === selectedCity){
+            optionCityTraining.selected=true
+            console.log("trouvé")
+        }
       });
 
 
       //INPUT SUBMIT BUTTON
       let submitNameFormer = document.createElement('button')
-      submitNameFormer.setAttribute('class', 'btn btn-primary')
+      submitNameFormer.setAttribute('class', 'btn btn-warning enableInput')
       submitNameFormer.setAttribute('type', 'submit')
       submitNameFormer.setAttribute('name', 'saveTraining')
       submitNameFormer.setAttribute('value', 'true')
-      submitNameFormer.innerText = 'Ajouter la formation'
+      submitNameFormer.innerText = 'Modifier la formation'
+
+          //ENABLE INPUT
+          submitNameFormer.addEventListener("click", function(e){
+   e.preventDefault();
+   e.stopPropagation()
+   let inputs = document.querySelectorAll("input")
+   let selects = document.querySelectorAll("select")
+   inputs.forEach(input => {
+    input.disabled=false
+    
+   });
+   selects.forEach(select => {
+    select.disabled=false 
+   });
+   submitNameFormer.setAttribute('class', 'btn btn-primary ')
+   submitNameFormer.innerText = 'Sauvegarder les modifications'
+   this.addEventListener('click', function(){ window.location = ('https://careerkarma.com') })
+
+})
+
+      let deleterForm = document.createElement('button')
+      deleterForm.setAttribute('class', 'btn btn-danger')
+      deleterForm.setAttribute('type', 'submit')
+      deleterForm.setAttribute('name', 'saveTraining')
+      deleterForm.setAttribute('value', 'true')
+      deleterForm.innerText = 'Supprimer la formation'
 
 
       divTitle.appendChild(labelInputNameFormer)
@@ -149,10 +182,15 @@
 
       form.appendChild(divTitle)
       form.appendChild(submitNameFormer) 
+      form.appendChild(deleterForm) 
      
       })
     
     });
+
+    //ENABLE INPUT
+
+
 
 
     // Get the modal

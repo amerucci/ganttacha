@@ -46,9 +46,11 @@ class Gantti
         'id' => $d['id'],
         'label' => $d['label'],
         'formateur' => $d['formateur'],
+        'ifformer' => $d['ifformer'],
         'start' => $start = strtotime($d['start']),
         'end'   => $end   = strtotime($d['end']),
         'ville'   => $d['ville'],
+        'idville'   => $d['idville'],
         'class' => @$d['class']
       );
 
@@ -155,9 +157,9 @@ class Gantti
       $html[] = '<span class="gantt-block' . $class . '" 
       forming-title="'.$block['label'] .'"
       forming-start="'.$block['start'] .'"
-      forming-title="'.$block['label'] .'"
-      forming-title="'.$block['label'] .'"
-      forming-title="'.$block['label'] .'"
+      forming-end="'.$block['end'] .'"
+      forming-id-former="'.$block['ifformer'] .'"
+      forming-id-city="'.$block['idville'] .'"
 
       
       style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . $block['start'] . ' - ' . $block['ville'] . '</strong></span>';
