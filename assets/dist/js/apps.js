@@ -132,12 +132,17 @@
         }
       });
 
+      let inputHidden = document.createElement('input')
+      inputHidden.setAttribute('type', 'hidden')
+      inputHidden.setAttribute('name', 'idforming')
+      inputHidden.value = this.getAttribute("forming-id")
+
 
       //INPUT SUBMIT BUTTON
       let submitNameFormer = document.createElement('button')
       submitNameFormer.setAttribute('class', 'btn btn-warning enableInput')
       submitNameFormer.setAttribute('type', 'submit')
-      submitNameFormer.setAttribute('name', 'saveTraining')
+      submitNameFormer.setAttribute('name', 'updateTraining')
       submitNameFormer.setAttribute('value', 'true')
       submitNameFormer.innerText = 'Modifier la formation'
 
@@ -156,12 +161,14 @@
    });
    submitNameFormer.setAttribute('class', 'btn btn-primary ')
    submitNameFormer.innerText = 'Sauvegarder les modifications'
-   this.addEventListener('click', function(){ window.location = ('https://careerkarma.com') })
+   this.addEventListener('click', function(){ window.location = ('?formingName='+inputNameFormer.value+'&formingStart=2023-01-01&formingEnd=2023-01-31&idforming=14&idformer=1&idcity=2&updateTraining=true') })
+
+//    
 
 })
 
       let deleterForm = document.createElement('button')
-      deleterForm.setAttribute('class', 'btn btn-danger')
+      deleterForm.setAttribute('class', 'btn btn-danger ms-3')
       deleterForm.setAttribute('type', 'submit')
       deleterForm.setAttribute('name', 'saveTraining')
       deleterForm.setAttribute('value', 'true')
@@ -174,6 +181,7 @@
       divTitle.appendChild(inputStart)
       divTitle.appendChild(labelInputEnd)
       divTitle.appendChild(inputEnd)
+      divTitle.appendChild(inputHidden)
 
       divTitle.appendChild(labelSelectFormerTraining)
       divTitle.appendChild(SelectFormerTraining)
