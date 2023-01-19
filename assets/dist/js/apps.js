@@ -1,3 +1,9 @@
+    function convertDate(date){
+    var unixTimestamp = parseInt(date)
+    var date = new Date(unixTimestamp*1000);
+    return(date.getFullYear()+"-"+("0"+String((date.getMonth()+1))).slice(-2)+"-"+("0"+String(date.getDate())).slice(-2))
+    }
+
 
     let allFormers = document.getElementById("myText").value;
     let allFormersArray = JSON.parse(allFormers);
@@ -48,9 +54,18 @@
       inputStart.setAttribute('name', 'formingStart');
       inputStart.required = true
       inputStart.disabled = true
-      inputStart.value = new Date(this.getAttribute('forming-start'))
+     inputStart.value = convertDate(this.getAttribute('forming-start'))
 
-      alert(new Date(this.getAttribute('forming-start')).toLocaleDateString("en-US"))
+   
+
+     
+    
+      
+   
+
+
+
+
 
       //LABEL INPUT START TRAINING
       let labelInputEnd = document.createElement('label');
