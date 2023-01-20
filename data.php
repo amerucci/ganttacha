@@ -146,3 +146,13 @@ WHERE id_training = ?
   $training->execute([$_GET['formingName'], $_GET['formingStart'], $_GET['formingEnd'], $_GET['idformer'], $_GET['idcity'], $_GET['idforming'] ]);
   header('Location: ./index.php');
 }
+
+/******************
+ * DELETE FORMING *
+ ******************/
+if (isset($_GET['deleteTraining'])) {
+  $trainer = $conn->prepare("DELETE FROM ganttacha_trainings WHERE id_training = ?");
+  $trainer->execute([$_GET['idTrainingToDelete']]);
+  header('Location: ./index.php');
+
+}

@@ -20,14 +20,11 @@ let allCitiesArray = JSON.parse(allCities);
 
 //INFO ABOUT FORMING
 
-let allDatas = "";
 
 let formingsBlock = document.querySelectorAll(".gantt-block");
 
 formingsBlock.forEach((forming) => {
   forming.addEventListener("click", function () {
-    allDatas = document.getElementById("modalForm");
-    console.log(allDatas);
     modal.style.display = "block";
     document.querySelector("#modalTitle").innerHTML =
       "Informations sur la formation";
@@ -195,9 +192,9 @@ formingsBlock.forEach((forming) => {
     // WHEN CLICKING FIRST TIME ON DELETE FORMING
     deleterForm.addEventListener("click", function (e) {
       e.preventDefault();
-      document.querySelector("#modalForm").innerHTML = '<input type="hidden" value="'+inputHidden.value+'"><div class="alert alert-danger">Attention vous êtes sur le point de supprimer la formation<br><b>'+inputNameFormer.value+'</b></div><button class="btn btn-light" type="submit" name="updateTraining" id="cancelEdition" value="true">Annuler</button><button class="btn btn-danger ms-3" type="submit" name="deleteTraining" value="true">Confirmer la suppression</button>'
-        document.querySelector('#cancelEdition').addEventListener('click',function(e){
-          e.preventDefault();
+      document.querySelector("#modalForm").innerHTML = '<input type="hidden" name="idTrainingToDelete" value="'+inputHidden.value+'"><div class="alert alert-danger">Attention vous êtes sur le point de supprimer la formation<br><b>'+inputNameFormer.value+'</b></div><button class="btn btn-light" type="submit" name="updateTraining" id="cancelEdition" value="true">Annuler</button><button class="btn btn-danger ms-3" type="submit" name="deleteTraining" value="true">Confirmer la suppression</button>'
+        document.querySelector('#cancelEdition').addEventListener('click',function(f){
+          f.preventDefault();
           document.querySelector("#modalForm").innerHTML = ""
           modal.style.display = "none";
         })
