@@ -110,7 +110,65 @@ class Gantti
     // months headers
     $html[] = '<ul class="gantt-months" ' . $totalstyle . '>';
     foreach ($this->months as $month) {
-      $html[] = '<li class="gantt-month" style="width: ' . ($this->options['cellwidth'] * $month->countDays()) . 'px"><strong ' . $cellstyle . '>' . $month->name() . '</strong></li>';
+      
+      $monthfr = "";
+      switch ($month->name()) {
+        case 'January':
+          $monthfr = 'Janvier';
+          break;
+
+        case 'February':
+          $monthfr = 'Février';
+          break;
+
+        case 'March':
+          $monthfr = 'Mars';
+          break;
+
+        case 'April':
+          $monthfr = 'Avril';
+          break;
+
+        case 'May':
+          $monthfr = 'Mai';
+          break;
+
+        case 'June':
+          $monthfr = 'Juin';
+          break;
+
+        case 'July':
+          $monthfr = 'Juillet';
+          break;
+
+        case 'August':
+          $monthfr = 'Août';
+          break;
+
+        case 'September':
+          $monthfr = 'Septembre';
+          break;
+
+        case 'October':
+          $monthfr = 'Octobre';
+          break;
+
+        case 'November':
+          $monthfr = 'Novembre';
+          break;
+
+        case 'December':
+          $monthfr = 'Décembre';
+          break;
+
+
+        default:
+          # code...
+          break;
+      }
+
+
+      $html[] = '<li class="gantt-month" style="width: ' . ($this->options['cellwidth'] * $month->countDays()) . 'px"><strong ' . $cellstyle . '>' . $monthfr . '</strong></li>';
     }
     $html[] = '</ul>';
 
@@ -155,15 +213,15 @@ class Gantti
       $height = round($this->options['cellheight'] - 8);
       $class  = ($block['class']) ? ' ' . $block['class'] : '';
       $html[] = '<span class="gantt-block' . $class . '" 
-      forming-title="'.$block['label'] .'"
-      forming-start="'.$block['start'] .'"
-      forming-end="'.$block['end'] .'"
-      forming-id-former="'.$block['ifformer'] .'"
-      forming-id-city="'.$block['idville'] .'"
-      forming-id="'.$block['id'] .'"
+      forming-title="' . $block['label'] . '"
+      forming-start="' . $block['start'] . '"
+      forming-end="' . $block['end'] . '"
+      forming-id-former="' . $block['ifformer'] . '"
+      forming-id-city="' . $block['idville'] . '"
+      forming-id="' . $block['id'] . '"
 
       
-      style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . $block['start'] . ' - ' . $block['ville'] . '</strong></span>';
+      style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . $block['formateur'] . ' - ' . $block['ville'] . '</strong></span>';
       $html[] = '</li>';
     }
 
@@ -176,9 +234,6 @@ class Gantti
       $offset = (($today->timestamp - $this->first->month()->timestamp) / $this->seconds);
       $left   = round($offset * $this->options['cellwidth']) + round(($this->options['cellwidth'] / 2) - 1);
 
-      if ($today->timestamp > $this->first->month()->firstDay()->timestamp && $today->timestamp < $this->last->month()->lastDay()->timestamp) {
-        $html[] = '<time style="top: ' . ($this->options['cellheight'] * 2) . 'px; left: ' . $left . 'px" datetime="' . $today->format('Y-m-d') . '">Today</time>';
-      }
     }
 
     // end data section

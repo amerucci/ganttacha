@@ -101,7 +101,8 @@ li.gantt-label:nth-child(odd) {
   text-align: center; }
 
 .gantt header .gantt-day.today span {
-  color: white; }
+  color: white; 
+background:rgb(163, 158, 158)}
 
 /* data items */
 .gantt-item {
@@ -143,7 +144,7 @@ li.gantt-label:nth-child(odd) {
 
 /* block colors */
 .gantt-block {
-  background: #268bd2; }
+  background: #d31e44; }
 
 .gantt-block.important {
   background: #b58900; }
@@ -194,3 +195,8 @@ li.gantt-label:nth-child(odd) {
   background: #fff;
   color: #000;
   }
+
+  .material-symbols-outlined {
+    font-size: 15px!important;
+    cursor: pointer;
+}
