@@ -132,3 +132,17 @@ if (isset($_GET['trainingCity'])) {
   $trainer->execute([$_GET['trainingCity']]);
   header('Location: ./index.php');
 }
+
+/******************
+ * UPDATE FORMING *
+ ******************/
+
+ if (isset($_GET['updateTraining'])) {
+  $training = $conn->prepare("UPDATE ganttacha_trainings
+SET name_training = ?, start_training = ?, end_training = ?, id_trainer_training = ?, id_city_training = ?
+WHERE id_training = ?
+
+");
+  $training->execute([$_GET['formingName'], $_GET['formingStart'], $_GET['formingEnd'], $_GET['idformer'], $_GET['idcity'], $_GET['idforming'] ]);
+  header('Location: ./index.php');
+}
