@@ -529,24 +529,21 @@ allInterventionsArray.forEach((interv) => {
 
   date_1 = new Date(interv[2])
   date_2 = document.querySelector("#t-" + interv[4]).getAttribute("forming-start")
+  date_3 = new Date(interv[3])
+
   difference = date_1.getTime()/1000 - date_2; 
+  differenceBetweenStartAndEnd = date_3.getTime()/1000 - date_1.getTime()/1000; 
+  
+ 
 
-  console.log("date 1 : "+date_1.getTime()/1000)
-  console.log("date 2 : "+date_2)
-  console.log("difference : "+difference)
-
-
-
-
-
-console.log(difference)
 TotalDays = Math.ceil(difference / (3600 * 24));
-console.log(TotalDays + ' days to world Cup');
+TotalDaysBetweenStartAndEnd = Math.ceil(differenceBetweenStartAndEnd / (3600 * 24));
+
 
   whereToInterven = document.querySelector("#t-" + interv[4]);
   intervention = document.createElement("div");
   intervention.className = "tata";
   intervention.style =
-    "height: 27px;background: rgb(255, 153, 0);position: absolute;top:0;width: 21px;z-index: 2;border-radius: 3px; left:"+Math.ceil(TotalDays*25)+"px";
+    "height: 27px;background: rgb(255, 153, 0);position: absolute;top:0; width: "+Math.ceil(TotalDaysBetweenStartAndEnd*25+25)+"px; z-index: 2;border-radius: 3px; left:"+Math.ceil(TotalDays*25-5)+"px";
   whereToInterven.appendChild(intervention);
 });
