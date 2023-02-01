@@ -186,3 +186,11 @@ if (isset($_GET['deleteTraining'])) {
   header('Location: ./index.php');
 
 }
+
+/*****************************
+ * GET ALL THE INTERVENTIONS *
+ *****************************/
+
+$allinterventions = $conn->prepare("SELECT * FROM ganttacha_interventions");
+$allinterventions->execute();
+$resultsAllinterventions = $allinterventions->fetchAll();

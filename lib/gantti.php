@@ -194,7 +194,7 @@ class Gantti
       $html[] = '<li class="gantt-item">';
 
       // days
-      $html[] = '<ul class="gantt-days" id="t-'.$block['id'].'">';
+      $html[] = '<ul class="gantt-days" >';
       foreach ($this->days as $day) {
 
         $weekend = ($day->isWeekend()) ? ' weekend' : '';
@@ -219,6 +219,7 @@ class Gantti
       forming-id-former="' . $block['ifformer'] . '"
       forming-id-city="' . $block['idville'] . '"
       forming-id="' . $block['id'] . '"
+      id="t-'.$block['id'].'"
 
       
       style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . $block['formateur'] . ' - ' . $block['ville'] . '</strong></span>';

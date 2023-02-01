@@ -20,7 +20,6 @@ let allCitiesArray = JSON.parse(allCities);
 
 //INFO ABOUT FORMING
 
-
 let formingsBlock = document.querySelectorAll(".gantt-block");
 
 formingsBlock.forEach((forming) => {
@@ -192,16 +191,20 @@ formingsBlock.forEach((forming) => {
     // WHEN CLICKING FIRST TIME ON DELETE FORMING
     deleterForm.addEventListener("click", function (e) {
       e.preventDefault();
-      document.querySelector("#modalForm").innerHTML = '<input type="hidden" name="idTrainingToDelete" value="'+inputHidden.value+'"><div class="alert alert-danger">Attention vous êtes sur le point de supprimer la formation<br><b>'+inputNameFormer.value+'</b></div><button class="btn btn-light" type="submit" name="updateTraining" id="cancelEdition" value="true">Annuler</button><button class="btn btn-danger ms-3" type="submit" name="deleteTraining" value="true">Confirmer la suppression</button>'
-        document.querySelector('#cancelEdition').addEventListener('click',function(f){
+      document.querySelector("#modalForm").innerHTML =
+        '<input type="hidden" name="idTrainingToDelete" value="' +
+        inputHidden.value +
+        '"><div class="alert alert-danger">Attention vous êtes sur le point de supprimer la formation<br><b>' +
+        inputNameFormer.value +
+        '</b></div><button class="btn btn-light" type="submit" name="updateTraining" id="cancelEdition" value="true">Annuler</button><button class="btn btn-danger ms-3" type="submit" name="deleteTraining" value="true">Confirmer la suppression</button>';
+      document
+        .querySelector("#cancelEdition")
+        .addEventListener("click", function (f) {
           f.preventDefault();
-          document.querySelector("#modalForm").innerHTML = ""
+          document.querySelector("#modalForm").innerHTML = "";
           modal.style.display = "none";
-        })
-    })
-
-      
-
+        });
+    });
 
     divTitle.appendChild(labelInputNameFormer);
     divTitle.appendChild(inputNameFormer);
@@ -509,8 +512,18 @@ deleteBtns.forEach((element) => {
  * CREATE A NEW INTERVENTION *
  *****************************/
 
-let whereToInterven = document.querySelector("#t-21")
-let intervention = document.createElement('div')
-intervention.className= "tata"
-intervention.style='height: 27px;background: rgb(255, 153, 0);position: absolute;width: 21px;z-index: 2;margin: 4px;border-radius: 3px; left:40px'
-whereToInterven.appendChild(intervention);
+let allInterventions = document.getElementById("resultsAllInterventions").value;
+let allInterventionsArray = JSON.parse(allInterventions);
+
+console.log(allInterventionsArray);
+let whereToInterven;
+let intervention;
+console.log(allInterventionsArray);
+allInterventionsArray.forEach((interv) => {
+  whereToInterven = document.querySelector("#t-" + interv[4]);
+  intervention = document.createElement("div");
+  intervention.className = "tata";
+  intervention.style =
+    "height: 27px;background: rgb(255, 153, 0);position: absolute;top:0;width: 21px;z-index: 2;border-radius: 3px; left:40px";
+  whereToInterven.appendChild(intervention);
+});
