@@ -220,6 +220,7 @@ class Gantti
       forming-id-city="' . $block['idville'] . '"
       forming-id="' . $block['id'] . '"
       id="t-'.$block['id'].'"
+      
 
       
       style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . $block['formateur'] . ' - ' . $block['ville'] . '</strong></span>';

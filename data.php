@@ -191,6 +191,17 @@ if (isset($_GET['deleteTraining'])) {
  * GET ALL THE INTERVENTIONS *
  *****************************/
 
-$allinterventions = $conn->prepare("SELECT * FROM ganttacha_interventions");
+$allinterventions = $conn->prepare("SELECT * FROM ganttacha_interventions LEFT OUTER JOIN ganttacha_speakers ON speaker_intervention = id_speaker");
 $allinterventions->execute();
 $resultsAllinterventions = $allinterventions->fetchAll();
+
+/************************
+ * GET ALL THE SPEAKERS *
+ ************************/
+
+$allSpeakers = $conn->prepare("SELECT * FROM ganttacha_interventions");
+$allSpeakers->execute();
+$resultsAllSpeakers = $allSpeakers->fetchAll();
+
+
+

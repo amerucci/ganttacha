@@ -513,37 +513,58 @@ deleteBtns.forEach((element) => {
  *****************************/
 
 let allInterventions = document.getElementById("resultsAllInterventions").value;
+let allSpeakers = document.getElementById("resultsAllSpeakers").value;
 let allInterventionsArray = JSON.parse(allInterventions);
+let allSpeakersArray = JSON.parse(allSpeakers);
 
 // calculating number of days for positionning intervention
 
-let date_1
-let date_2
-let difference
-let TotalDays
+let date_1;
+let date_2;
+let difference;
+let TotalDays;
 let whereToInterven;
 let intervention;
 
 console.log(allInterventionsArray);
 allInterventionsArray.forEach((interv) => {
+  date_1 = new Date(interv[2]);
+  date_2 = document
+    .querySelector("#t-" + interv[4])
+    .getAttribute("forming-start");
+  date_3 = new Date(interv[3]);
 
-  date_1 = new Date(interv[2])
-  date_2 = document.querySelector("#t-" + interv[4]).getAttribute("forming-start")
-  date_3 = new Date(interv[3])
+  difference = date_1.getTime() / 1000 - date_2;
+  differenceBetweenStartAndEnd =
+    date_3.getTime() / 1000 - date_1.getTime() / 1000;
 
-  difference = date_1.getTime()/1000 - date_2; 
-  differenceBetweenStartAndEnd = date_3.getTime()/1000 - date_1.getTime()/1000; 
-  
- 
-
-TotalDays = Math.ceil(difference / (3600 * 24));
-TotalDaysBetweenStartAndEnd = Math.ceil(differenceBetweenStartAndEnd / (3600 * 24));
-
+  TotalDays = Math.ceil(difference / (3600 * 24));
+  TotalDaysBetweenStartAndEnd = Math.ceil(
+    differenceBetweenStartAndEnd / (3600 * 24)
+  );
 
   whereToInterven = document.querySelector("#t-" + interv[4]);
   intervention = document.createElement("div");
   intervention.className = "tata";
   intervention.style =
-    "height: 27px;background: rgb(255, 153, 0);position: absolute;top:0; width: "+Math.ceil(TotalDaysBetweenStartAndEnd*25+25)+"px; z-index: 2;border-radius: 3px; left:"+Math.ceil(TotalDays*25-5)+"px";
+    "height: 27px;background: rgb(255, 153, 0);position: absolute;top:0; width: " +
+    Math.ceil(TotalDaysBetweenStartAndEnd * 25 + 25) +
+    "px; z-index: 2;border-radius: 3px; left:" +
+    Math.ceil(TotalDays * 25 - 5) +
+    "px";
+  intervention.setAttribute("data-bs-toggle", "tooltip");
+  intervention.setAttribute("data-bs-custom-class", "custom-tooltip");
+  intervention.setAttribute("data-bs-placement", "top");
+  intervention.setAttribute(
+    "data-bs-title",
+    interv[7]+" - "+ interv[1]  );
+
   whereToInterven.appendChild(intervention);
 });
+
+const tooltipTriggerList = document.querySelectorAll(
+  '[data-bs-toggle="tooltip"]'
+);
+const tooltipList = [...tooltipTriggerList].map(
+  (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+);

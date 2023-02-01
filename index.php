@@ -100,6 +100,7 @@ $gantti = new Gantti($data, array(
   <input type="hidden" id="myText" value='<?php echo json_encode($resultsAllTrainers); ?>'>
   <input type="hidden" id="resultsAllCities" value='<?php echo json_encode($resultsAllCities); ?>'>
   <input type="hidden" id="resultsAllInterventions" value='<?php echo json_encode($resultsAllinterventions); ?>'>
+  <input type="hidden" id="resultsAllSpeakers" value='<?php echo json_encode($resultsAllSpeakers); ?>'>
 
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">GanTTacha</a>
