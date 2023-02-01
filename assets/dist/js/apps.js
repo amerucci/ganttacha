@@ -515,15 +515,38 @@ deleteBtns.forEach((element) => {
 let allInterventions = document.getElementById("resultsAllInterventions").value;
 let allInterventionsArray = JSON.parse(allInterventions);
 
-console.log(allInterventionsArray);
+// calculating number of days for positionning intervention
+
+let date_1
+let date_2
+let difference
+let TotalDays
 let whereToInterven;
 let intervention;
+
 console.log(allInterventionsArray);
 allInterventionsArray.forEach((interv) => {
+
+  date_1 = new Date(interv[2])
+  date_2 = document.querySelector("#t-" + interv[4]).getAttribute("forming-start")
+  difference = date_1.getTime()/1000 - date_2; 
+
+  console.log("date 1 : "+date_1.getTime()/1000)
+  console.log("date 2 : "+date_2)
+  console.log("difference : "+difference)
+
+
+
+
+
+console.log(difference)
+TotalDays = Math.ceil(difference / (3600 * 24));
+console.log(TotalDays + ' days to world Cup');
+
   whereToInterven = document.querySelector("#t-" + interv[4]);
   intervention = document.createElement("div");
   intervention.className = "tata";
   intervention.style =
-    "height: 27px;background: rgb(255, 153, 0);position: absolute;top:0;width: 21px;z-index: 2;border-radius: 3px; left:40px";
+    "height: 27px;background: rgb(255, 153, 0);position: absolute;top:0;width: 21px;z-index: 2;border-radius: 3px; left:"+Math.ceil(TotalDays*25)+"px";
   whereToInterven.appendChild(intervention);
 });
