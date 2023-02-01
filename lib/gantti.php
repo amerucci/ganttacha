@@ -194,7 +194,7 @@ class Gantti
       $html[] = '<li class="gantt-item">';
 
       // days
-      $html[] = '<ul class="gantt-days">';
+      $html[] = '<ul class="gantt-days" id="t-'.$block['id'].'">';
       foreach ($this->days as $day) {
 
         $weekend = ($day->isWeekend()) ? ' weekend' : '';

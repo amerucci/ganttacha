@@ -160,8 +160,27 @@ $gantti = new Gantti($data, array(
 
         <?php echo $gantti ?>
 
-
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2>Tous les formateurs</h2>
+       <div class="searchformer">
+        <form action="" method="get">
+        <label for="exampleDataList" class="form-label">Filtrer par formateur</label>
+<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Nom du formateur..." name="formerNameSelected">
+<datalist id="datalistOptions" >
+  <?php var_dump(($alltrainers));?>
+<?php foreach($resultsAllTrainerswithout as $oneformer){
+echo '<option value="'.$oneformer['name_trainer'].'">';
+}
+?>
+
+ 
+</datalist>
+<button type="submit" name="filterByName" value="true">Filtrer</button>
+        </form>
+    
+       </div>
+       
+        </div>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>

@@ -63,7 +63,7 @@ li.gantt-label:nth-child(odd) {
   }
 
 .gantt aside .gantt-labels {
-  border-top: 1px solid #001f27;
+  border-top: 1px solid #f2f2f2;
   }
 
 .gantt aside .gantt-label strong {
@@ -89,12 +89,16 @@ li.gantt-label:nth-child(odd) {
 
 .gantt header .gantt-month {
   float: left;
-  text-align: center; }
+  text-align: center;
+  background: var(--bs-gray-300);
+  color: var(--bs-gray-dark);
+  }
 
 .gantt header .gantt-month strong {
   display: block;
-  border-right: 1px solid #001f27;
-  border-bottom: 1px solid #001f27; }
+  border-right: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+  }
 
 .gantt header .gantt-day span {
   text-indent: 0;

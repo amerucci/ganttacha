@@ -4,6 +4,8 @@
  * CONNECT BDD *
  ***************/
 
+use function PHPUnit\Framework\isNull;
+
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -22,6 +24,15 @@ try {
 $alltrainers = $conn->prepare("SELECT * FROM ganttacha_trainers");
 $alltrainers->execute();
 $resultsAllTrainers = $alltrainers->fetchAll();
+
+
+/**********************************************
+ * START GET ALL THE TRAINERS EXCEPT NO FORMER *
+ **********************************************/
+
+ $alltrainers = $conn->prepare("SELECT * FROM ganttacha_trainers WHERE id_trainer !=1");
+ $alltrainers->execute();
+ $resultsAllTrainerswithout = $alltrainers->fetchAll();
 
 /******************************
  * START GET ALL THE CITIES *
@@ -122,6 +133,25 @@ $trainerHome = $conn->prepare("SELECT id_trainer, name_trainer, name_training, s
 $trainerHome->execute();
 $trainerHome = $trainerHome->fetchAll();
 //var_dump($trainerHome);
+
+
+/********************
+ * FILTERED TRAINER *
+ ********************/
+
+if(isset($_GET['formerNameSelected']) && !empty($_GET['formerNameSelected'])){
+  $trainerHome = $conn->prepare("SELECT id_trainer, name_trainer, name_training, start_training, end_training, name_city FROM ganttacha_trainers LEFT OUTER JOIN ganttacha_trainings ON id_trainer = id_trainer_training LEFT OUTER JOIN ganttacha_cities ON id_city_training = id_city WHERE name_trainer = ? ORDER BY name_trainer ASC");
+  $trainerHome->execute([$_GET['formerNameSelected']]);
+  //$trainerHome->debugDumpParams();
+  $trainerHome = $trainerHome->fetchAll();
+}
+else{
+  $trainerHome = $conn->prepare("SELECT id_trainer, name_trainer, name_training, start_training, end_training, name_city FROM ganttacha_trainers LEFT OUTER JOIN ganttacha_trainings ON id_trainer = id_trainer_training LEFT OUTER JOIN ganttacha_cities ON id_city_training = id_city ORDER BY name_trainer ASC");
+$trainerHome->execute();
+$trainerHome = $trainerHome->fetchAll();
+}
+
+
 
 /************************
  * REQUEST TO SAVE CITY *

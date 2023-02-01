@@ -504,3 +504,13 @@ deleteBtns.forEach((element) => {
     form.appendChild(submitNameFormer);
   });
 });
+
+/*****************************
+ * CREATE A NEW INTERVENTION *
+ *****************************/
+
+let whereToInterven = document.querySelector("#t-21")
+let intervention = document.createElement('div')
+intervention.className= "tata"
+intervention.style='height: 27px;background: rgb(255, 153, 0);position: absolute;width: 21px;z-index: 2;margin: 4px;border-radius: 3px; left:40px'
+whereToInterven.appendChild(intervention);
