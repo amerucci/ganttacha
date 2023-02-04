@@ -120,22 +120,72 @@ $gantti = new Gantti($data, array(
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
         <div class="position-sticky pt-3 sidebar-sticky">
           <ul class="nav flex-column">
-            <li class="nav-item" id="addTraining" data-title="Ajouter une formation">
 
-              <span data-feather="home" class=" nav-link align-text-bottom"></span>
-              Ajouter une formation
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
+              <span>Formations</span>
+            </h6>
+
+            <li class="nav-item px-3 pt-2" id="addTraining" data-title="Ajouter une formation" class="">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text align-text-bottom" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>Ajouter une formation</span>
 
             </li>
-            <li class="nav-item" id="addTrainer" data-title="Ajouter un formateur">
+            <li class="nav-item px-3 pt-2" id="addTrainer" data-title="Ajouter un formateur">
 
-              <span data-feather="file" class="align-text-bottom"></span>
-              Ajouter un formateur
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-text-bottom" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>Ajouter un formateur</span>
 
             </li>
-            <li class="nav-item" id="addCity" data-title="Ajouter une ville">
+            <li class="nav-item px-3 pt-2" id="addCity" data-title="Ajouter une ville">
 
-              <span data-feather="file" class="align-text-bottom"></span>
-              Ajouter une ville
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-text-bottom" aria-hidden="true">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              <span>Ajouter une ville</span>
+
+            </li>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
+              <span>Interventions</span>
+            </h6>
+
+            <li class="nav-item px-3 pt-2" id="addIntervention" data-title="Ajouter une intervention" class="">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text align-text-bottom" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>Ajouter une intervention</span>
+
+            </li>
+
+
+            <li class="nav-item px-3 pt-2" id="addTrainer" data-title="Ajouter un formateur">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-text-bottom" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>Ajouter un intervenant</span>
 
             </li>
           </ul>
@@ -162,26 +212,26 @@ $gantti = new Gantti($data, array(
 
         <?php echo $gantti ?>
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>Tous les formateurs</h2>
-       <div class="searchformer">
-        <form action="" method="get">
-        <label for="exampleDataList" class="form-label">Filtrer par formateur</label>
-<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Nom du formateur..." name="formerNameSelected">
-<datalist id="datalistOptions" >
-  <?php var_dump(($alltrainers));?>
-<?php foreach($resultsAllTrainerswithout as $oneformer){
-echo '<option value="'.$oneformer['name_trainer'].'">';
-}
-?>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h2>Tous les formateurs</h2>
+          <div class="searchformer">
+            <form action="" method="get">
+              <label for="exampleDataList" class="form-label">Filtrer par formateur</label>
+              <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Nom du formateur..." name="formerNameSelected">
+              <datalist id="datalistOptions">
+                <?php var_dump(($alltrainers)); ?>
+                <?php foreach ($resultsAllTrainerswithout as $oneformer) {
+                  echo '<option value="' . $oneformer['name_trainer'] . '">';
+                }
+                ?>
 
- 
-</datalist>
-<button type="submit" name="filterByName" value="true">Filtrer</button>
-        </form>
-    
-       </div>
-       
+
+              </datalist>
+              <button type="submit" name="filterByName" value="true">Filtrer</button>
+            </form>
+
+          </div>
+
         </div>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
@@ -241,7 +291,7 @@ echo '<option value="'.$oneformer['name_trainer'].'">';
 
   </div>
 
-  
+
 
   <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/dist/js/apps.js"></script>
