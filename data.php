@@ -204,4 +204,12 @@ $allSpeakers->execute();
 $resultsAllSpeakers = $allSpeakers->fetchAll();
 
 
+/*****************************
+ * REQUEST TO SAVE A SPEAKER *
+ *****************************/
 
+ if (isset($_GET['speakerName'])) {
+  $trainer = $conn->prepare("INSERT INTO ganttacha_speakers (name_speaker) VALUES (?) ");
+  $trainer->execute([$_GET['speakerName']]);
+  header('Location: ./index.php');
+}

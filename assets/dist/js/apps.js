@@ -353,6 +353,7 @@ document.querySelector("#addTraining").addEventListener("click", function () {
   form.appendChild(divTitle);
   form.appendChild(submitNameFormer);
 });
+
 //Function when clickin on addin trainer
 document.querySelector("#addTrainer").addEventListener("click", function () {
   //alert(document.getElementById("addTraining").getAttribute('data-title'))
@@ -399,6 +400,55 @@ document.querySelector("#addTrainer").addEventListener("click", function () {
   form.appendChild(divTitle);
   form.appendChild(submitNameFormer);
 });
+
+//Function when clickin on addin speaker
+document.querySelector("#addSpeaker").addEventListener("click", function () {
+  //alert(document.getElementById("addTraining").getAttribute('data-title'))
+  modal.style.display = "block";
+  document.querySelector("#modalTitle").innerHTML = document
+    .getElementById("addSpeaker")
+    .getAttribute("data-title");
+  let form = document.querySelector("#modalForm");
+  let divTitle = document.createElement("div");
+  divTitle.className = "mb-3";
+
+  //LABEL INPUT NAME FORMER
+  let labelInputNameFormer = document.createElement("label");
+  labelInputNameFormer.setAttribute("for", "inputNameFormerId");
+  labelInputNameFormer.setAttribute("class", "form-label");
+  labelInputNameFormer.innerText = "Intervenant";
+
+  //INPUT NAME FORMER
+  let inputNameFormer = document.createElement("input");
+  inputNameFormer.setAttribute("type", "text");
+  inputNameFormer.setAttribute("id", "inputNameFormerId");
+  inputNameFormer.setAttribute("class", "form-control");
+  inputNameFormer.setAttribute("name", "speakerName");
+  inputNameFormer.required = true;
+
+  //INPUT NAME FORMER EXPLAINATION
+  // <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  let helpNameFormer = document.createElement("div");
+  helpNameFormer.setAttribute("class", "form-text");
+  helpNameFormer.setAttribute("id", "inputNameFormer-help");
+  helpNameFormer.innerText = "Saisir le prénom et nom de l'intervenant";
+
+  //INPUT SUBMIT BUTTON
+  let submitNameFormer = document.createElement("button");
+  submitNameFormer.setAttribute("class", "btn btn-primary");
+  submitNameFormer.setAttribute("type", "submit");
+  submitNameFormer.setAttribute("name", "saveSpeaker");
+  submitNameFormer.setAttribute("value", "true");
+  submitNameFormer.innerText = "Soumettre l'intervenant";
+
+  divTitle.appendChild(labelInputNameFormer);
+  divTitle.appendChild(inputNameFormer);
+  divTitle.appendChild(helpNameFormer);
+  form.appendChild(divTitle);
+  form.appendChild(submitNameFormer);
+});
+
+
 
 //Function when clickin on adding city
 document.querySelector("#addCity").addEventListener("click", function () {
