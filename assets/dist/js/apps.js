@@ -1,4 +1,6 @@
-// FUNCTION TO CONVERT TIMESTAMP UNIX
+/**************************************
+ * FUNCTION TO CONVERT TIMESTAMP UNIX *
+ **************************************/
 
 function convertDate(date) {
   var unixTimestamp = parseInt(date);
@@ -18,7 +20,9 @@ let allFormersArray = JSON.parse(allFormers);
 let allCities = document.getElementById("resultsAllCities").value;
 let allCitiesArray = JSON.parse(allCities);
 
-//INFO ABOUT FORMING
+/**********************
+ * INFO ABOUT FORMING *
+ **********************/
 
 let formingsBlock = document.querySelectorAll(".gantt-block");
 
@@ -225,14 +229,18 @@ formingsBlock.forEach((forming) => {
   });
 });
 
-//ENABLE INPUT
+/****************
+ * ENABLE INPUT *
+ ****************/
 
-// Get the modal
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("addTraining");
 var span = document.getElementsByClassName("close")[0];
 
-//Function when clickin on addin training
+/*******************************************
+ * FUNCTION WHEN CLICKIN ON ADDIN TRAINING *
+ *******************************************/
+
 document.querySelector("#addTraining").addEventListener("click", function () {
   //alert(document.getElementById("addTraining").getAttribute('data-title'))
   modal.style.display = "block";
@@ -354,7 +362,10 @@ document.querySelector("#addTraining").addEventListener("click", function () {
   form.appendChild(submitNameFormer);
 });
 
-//Function when clickin on addin trainer
+/******************************************
+ * FUNCTION WHEN CLICKIN ON ADDIN TRAINER *
+ ******************************************/
+
 document.querySelector("#addTrainer").addEventListener("click", function () {
   //alert(document.getElementById("addTraining").getAttribute('data-title'))
   modal.style.display = "block";
@@ -401,7 +412,10 @@ document.querySelector("#addTrainer").addEventListener("click", function () {
   form.appendChild(submitNameFormer);
 });
 
-//Function when clickin on addin speaker
+/******************************************
+ * FUNCTION WHEN CLICKIN ON ADDIN SPEAKER *
+ ******************************************/
+
 document.querySelector("#addSpeaker").addEventListener("click", function () {
   //alert(document.getElementById("addTraining").getAttribute('data-title'))
   modal.style.display = "block";
@@ -427,7 +441,6 @@ document.querySelector("#addSpeaker").addEventListener("click", function () {
   inputNameFormer.required = true;
 
   //INPUT NAME FORMER EXPLAINATION
-  // <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   let helpNameFormer = document.createElement("div");
   helpNameFormer.setAttribute("class", "form-text");
   helpNameFormer.setAttribute("id", "inputNameFormer-help");
@@ -448,9 +461,10 @@ document.querySelector("#addSpeaker").addEventListener("click", function () {
   form.appendChild(submitNameFormer);
 });
 
+/****************************************
+ * FUNCTION WHEN CLICKIN ON ADDING CITY *
+ ****************************************/
 
-
-//Function when clickin on adding city
 document.querySelector("#addCity").addEventListener("click", function () {
   //alert(document.getElementById("addTraining").getAttribute('data-title'))
   modal.style.display = "block";
@@ -497,14 +511,20 @@ document.querySelector("#addCity").addEventListener("click", function () {
   form.appendChild(submitNameFormer);
 });
 
-// When the user clicks on <span> (x), close the modal
+/*******************************************************
+ * WHEN THE USER CLICKS ON <SPAN> (X), CLOSE THE MODAL *
+ *******************************************************/
+
 span.onclick = function () {
   modal.style.display = "none";
   //Erase content
   document.querySelector("#modalForm").innerHTML = "";
 };
 
-// When the user clicks anywhere outside of the modal, close it
+/****************************************************************
+ * WHEN THE USER CLICKS ANYWHERE OUTSIDE OF THE MODAL, CLOSE IT *
+ ****************************************************************/
+
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
@@ -513,7 +533,10 @@ window.onclick = function (event) {
   }
 };
 
-//DELETING FORMER
+/*******************
+ * DELETING FORMER *
+ *******************/
+
 let deleteBtns = document.querySelectorAll(".deleteBtn");
 console.log(deleteBtns);
 deleteBtns.forEach((element) => {
@@ -567,7 +590,9 @@ let allSpeakers = document.getElementById("resultsAllSpeakers").value;
 let allInterventionsArray = JSON.parse(allInterventions);
 let allSpeakersArray = JSON.parse(allSpeakers);
 
-// calculating number of days for positionning intervention
+/************************************************************
+ * CALCULATING NUMBER OF DAYS FOR POSITIONNING INTERVENTION *
+ ************************************************************/
 
 let date_1;
 let date_2;
@@ -605,9 +630,7 @@ allInterventionsArray.forEach((interv) => {
   intervention.setAttribute("data-bs-toggle", "tooltip");
   intervention.setAttribute("data-bs-custom-class", "custom-tooltip");
   intervention.setAttribute("data-bs-placement", "top");
-  intervention.setAttribute(
-    "data-bs-title",
-    interv[7]+" - "+ interv[1]  );
+  intervention.setAttribute("data-bs-title", interv[7] + " - " + interv[1]);
 
   whereToInterven.appendChild(intervention);
 });
