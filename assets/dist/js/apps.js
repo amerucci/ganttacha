@@ -320,6 +320,131 @@ document.querySelector("#addTraining").addEventListener("click", function () {
   let labelSelectCityTraining = document.createElement("label");
   labelSelectCityTraining.setAttribute("for", "SelectCityTraining");
   labelSelectCityTraining.setAttribute("class", "form-label");
+  labelSelectCityTraining.innerText = "Ville";
+
+  //INPUT SELECT CITY TRAINING
+  let SelectCityTraining = document.createElement("select");
+  SelectCityTraining.setAttribute("id", "SelectCityTraining");
+  SelectCityTraining.setAttribute("class", "form-select");
+  SelectCityTraining.setAttribute("name", "idcity");
+  SelectCityTraining.required = true;
+
+  //INPUT SELECT CITY TRAINING
+
+  allCitiesArray.forEach((city) => {
+    let optionCityTraining = document.createElement("option");
+    optionCityTraining.value = city["id_city"];
+    optionCityTraining.text = city["name_city"];
+    SelectCityTraining.appendChild(optionCityTraining);
+  });
+
+  //INPUT SUBMIT BUTTON
+  let submitNameFormer = document.createElement("button");
+  submitNameFormer.setAttribute("class", "btn btn-primary");
+  submitNameFormer.setAttribute("type", "submit");
+  submitNameFormer.setAttribute("name", "saveTraining");
+  submitNameFormer.setAttribute("value", "true");
+  submitNameFormer.innerText = "Ajouter la formation";
+
+  divTitle.appendChild(labelInputNameFormer);
+  divTitle.appendChild(inputNameFormer);
+  divTitle.appendChild(labelInputStart);
+  divTitle.appendChild(inputStart);
+  divTitle.appendChild(labelInputEnd);
+  divTitle.appendChild(inputEnd);
+
+  divTitle.appendChild(labelSelectFormerTraining);
+  divTitle.appendChild(SelectFormerTraining);
+  divTitle.appendChild(labelSelectCityTraining);
+  divTitle.appendChild(SelectCityTraining);
+
+  form.appendChild(divTitle);
+  form.appendChild(submitNameFormer);
+});
+
+
+/***********************************************
+ * FUNCTION WHEN CLICKIN ON ADDIN INTERVENTION *
+ ***********************************************/
+
+document.querySelector("#addIntervention").addEventListener("click", function () {
+  modal.style.display = "block";
+  document.querySelector("#modalTitle").innerHTML = document
+    .getElementById("addIntervention")
+    .getAttribute("data-title");
+  let form = document.querySelector("#modalForm");
+  let divTitle = document.createElement("div");
+  divTitle.className = "mb-3";
+
+  //LABEL INPUT NAME TRAINING
+  let labelInputNameFormer = document.createElement("label");
+  labelInputNameFormer.setAttribute("for", "inputNameForming");
+  labelInputNameFormer.setAttribute("class", "form-label");
+  labelInputNameFormer.innerText = "Nom de la formation";
+
+  //INPUT NAME TRAINING
+  let inputNameFormer = document.createElement("input");
+  inputNameFormer.setAttribute("type", "text");
+  inputNameFormer.setAttribute("id", "inputNameForming");
+  inputNameFormer.setAttribute("class", "form-control");
+  inputNameFormer.setAttribute("name", "formingName");
+  inputNameFormer.setAttribute("placeholder", "Nom de la formation");
+  inputNameFormer.required = true;
+
+  //LABEL INPUT START TRAINING
+  let labelInputStart = document.createElement("label");
+  labelInputStart.setAttribute("for", "inputStart");
+  labelInputStart.setAttribute("class", "form-label");
+  labelInputStart.innerText = "Date de début de formation";
+
+  //INPUT START TRAINING
+  let inputStart = document.createElement("input");
+  inputStart.setAttribute("type", "date");
+  inputStart.setAttribute("id", "inputStart");
+  inputStart.setAttribute("class", "form-control");
+  inputStart.setAttribute("name", "formingStart");
+  inputStart.required = true;
+
+  //LABEL INPUT START TRAINING
+  let labelInputEnd = document.createElement("label");
+  labelInputEnd.setAttribute("for", "inputEnd");
+  labelInputEnd.setAttribute("class", "form-label");
+  labelInputEnd.innerText = "Date de fin de formation";
+
+  //INPUT START TRAINING
+  let inputEnd = document.createElement("input");
+  inputEnd.setAttribute("type", "date");
+  inputEnd.setAttribute("id", "inputEnd");
+  inputEnd.setAttribute("class", "form-control");
+  inputEnd.setAttribute("name", "formingEnd");
+  inputEnd.required = true;
+
+  //LABEL INPUT SELECT FORMER TRAINING
+  let labelSelectFormerTraining = document.createElement("label");
+  labelSelectFormerTraining.setAttribute("for", "SelectFormerTraining");
+  labelSelectFormerTraining.setAttribute("class", "form-label");
+  labelSelectFormerTraining.innerText = "Formateur";
+
+  //INPUT SELECT FORMER TRAINING
+  let SelectFormerTraining = document.createElement("select");
+  SelectFormerTraining.setAttribute("id", "SelectFormerTraining");
+  SelectFormerTraining.setAttribute("class", "form-select");
+  SelectFormerTraining.setAttribute("name", "idformer");
+  SelectFormerTraining.required = true;
+
+  //INPUT SELECT FORMER TRAINING
+
+  allFormersArray.forEach((former) => {
+    let optionFormerTraining = document.createElement("option");
+    optionFormerTraining.value = former["id_trainer"];
+    optionFormerTraining.text = former["name_trainer"];
+    SelectFormerTraining.appendChild(optionFormerTraining);
+  });
+
+  //LABEL INPUT SELECT CITY TRAINING
+  let labelSelectCityTraining = document.createElement("label");
+  labelSelectCityTraining.setAttribute("for", "SelectCityTraining");
+  labelSelectCityTraining.setAttribute("class", "form-label");
   labelSelectCityTraining.innerText = "Formateur";
 
   //INPUT SELECT CITY TRAINING
