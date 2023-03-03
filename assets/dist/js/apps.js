@@ -20,6 +20,8 @@ let allFormersArray = JSON.parse(allFormers);
 let allCities = document.getElementById("resultsAllCities").value;
 let allCitiesArray = JSON.parse(allCities);
 
+
+
 /**********************
  * INFO ABOUT FORMING *
  **********************/
@@ -380,7 +382,7 @@ document.querySelector("#addIntervention").addEventListener("click", function ()
   let labelInputNameFormer = document.createElement("label");
   labelInputNameFormer.setAttribute("for", "inputNameForming");
   labelInputNameFormer.setAttribute("class", "form-label");
-  labelInputNameFormer.innerText = "Nom de la formation";
+  labelInputNameFormer.innerText = "Nom de l'intervention";
 
   //INPUT NAME TRAINING
   let inputNameFormer = document.createElement("input");
@@ -388,14 +390,17 @@ document.querySelector("#addIntervention").addEventListener("click", function ()
   inputNameFormer.setAttribute("id", "inputNameForming");
   inputNameFormer.setAttribute("class", "form-control");
   inputNameFormer.setAttribute("name", "formingName");
-  inputNameFormer.setAttribute("placeholder", "Nom de la formation");
+  inputNameFormer.setAttribute("placeholder", "Nom de l'intervention");
   inputNameFormer.required = true;
+
+
+  
 
   //LABEL INPUT START TRAINING
   let labelInputStart = document.createElement("label");
   labelInputStart.setAttribute("for", "inputStart");
   labelInputStart.setAttribute("class", "form-label");
-  labelInputStart.innerText = "Date de début de formation";
+  labelInputStart.innerText = "Date de début de l'intervention";
 
   //INPUT START TRAINING
   let inputStart = document.createElement("input");
@@ -409,7 +414,7 @@ document.querySelector("#addIntervention").addEventListener("click", function ()
   let labelInputEnd = document.createElement("label");
   labelInputEnd.setAttribute("for", "inputEnd");
   labelInputEnd.setAttribute("class", "form-label");
-  labelInputEnd.innerText = "Date de fin de formation";
+  labelInputEnd.innerText = "Date de fin de l'intervention";
 
   //INPUT START TRAINING
   let inputEnd = document.createElement("input");
@@ -419,57 +424,56 @@ document.querySelector("#addIntervention").addEventListener("click", function ()
   inputEnd.setAttribute("name", "formingEnd");
   inputEnd.required = true;
 
+  //LABEL INPUT NAME FORMER
+  let labelselectForming = document.createElement("label");
+  labelselectForming.setAttribute("for", "SelectTraining");
+  labelselectForming.setAttribute("class", "form-label");
+  labelselectForming.innerText = "Formation";
+
+    //SELECT FORMING
+    let selectForming = document.createElement("select");
+    selectForming.setAttribute("id", "SelectTraining");
+    selectForming.setAttribute("class", "form-select");
+    selectForming.setAttribute("name", "idformer");
+    selectForming.required = true;
+  
+    allFormingsArray.forEach((forming) => {
+      let optionFormerTraining = document.createElement("option");
+      optionFormerTraining.value = forming["id"];
+      optionFormerTraining.text = forming["label"]+" - "+ forming["ville"];
+      selectForming.appendChild(optionFormerTraining);
+    });
+
   //LABEL INPUT SELECT FORMER TRAINING
   let labelSelectFormerTraining = document.createElement("label");
   labelSelectFormerTraining.setAttribute("for", "SelectFormerTraining");
   labelSelectFormerTraining.setAttribute("class", "form-label");
-  labelSelectFormerTraining.innerText = "Formateur";
+  labelSelectFormerTraining.innerText = "Intervenant";
 
   //INPUT SELECT FORMER TRAINING
   let SelectFormerTraining = document.createElement("select");
   SelectFormerTraining.setAttribute("id", "SelectFormerTraining");
   SelectFormerTraining.setAttribute("class", "form-select");
-  SelectFormerTraining.setAttribute("name", "idformer");
+  SelectFormerTraining.setAttribute("name", "idforming");
   SelectFormerTraining.required = true;
+  //allFormingsArray
+  //INPUT SELECT SPEAKER
 
-  //INPUT SELECT FORMER TRAINING
-
-  allFormersArray.forEach((former) => {
+  allSpeakersArray.forEach((sepaker) => {
     let optionFormerTraining = document.createElement("option");
-    optionFormerTraining.value = former["id_trainer"];
-    optionFormerTraining.text = former["name_trainer"];
+    optionFormerTraining.value = sepaker["id_speaker"];
+    optionFormerTraining.text = sepaker["name_speaker"];
     SelectFormerTraining.appendChild(optionFormerTraining);
   });
 
-  //LABEL INPUT SELECT CITY TRAINING
-  let labelSelectCityTraining = document.createElement("label");
-  labelSelectCityTraining.setAttribute("for", "SelectCityTraining");
-  labelSelectCityTraining.setAttribute("class", "form-label");
-  labelSelectCityTraining.innerText = "Formateur";
-
-  //INPUT SELECT CITY TRAINING
-  let SelectCityTraining = document.createElement("select");
-  SelectCityTraining.setAttribute("id", "SelectCityTraining");
-  SelectCityTraining.setAttribute("class", "form-select");
-  SelectCityTraining.setAttribute("name", "idcity");
-  SelectCityTraining.required = true;
-
-  //INPUT SELECT CITY TRAINING
-
-  allCitiesArray.forEach((city) => {
-    let optionCityTraining = document.createElement("option");
-    optionCityTraining.value = city["id_city"];
-    optionCityTraining.text = city["name_city"];
-    SelectCityTraining.appendChild(optionCityTraining);
-  });
 
   //INPUT SUBMIT BUTTON
   let submitNameFormer = document.createElement("button");
   submitNameFormer.setAttribute("class", "btn btn-primary");
   submitNameFormer.setAttribute("type", "submit");
-  submitNameFormer.setAttribute("name", "saveTraining");
+  submitNameFormer.setAttribute("name", "saveIntervention");
   submitNameFormer.setAttribute("value", "true");
-  submitNameFormer.innerText = "Ajouter la formation";
+  submitNameFormer.innerText = "Ajouter l'intervention";
 
   divTitle.appendChild(labelInputNameFormer);
   divTitle.appendChild(inputNameFormer);
@@ -478,10 +482,14 @@ document.querySelector("#addIntervention").addEventListener("click", function ()
   divTitle.appendChild(labelInputEnd);
   divTitle.appendChild(inputEnd);
 
+  
+  divTitle.appendChild(labelselectForming);
+  divTitle.appendChild(selectForming);
+
   divTitle.appendChild(labelSelectFormerTraining);
   divTitle.appendChild(SelectFormerTraining);
-  divTitle.appendChild(labelSelectCityTraining);
-  divTitle.appendChild(SelectCityTraining);
+  
+
 
   form.appendChild(divTitle);
   form.appendChild(submitNameFormer);
@@ -712,8 +720,15 @@ deleteBtns.forEach((element) => {
 
 let allInterventions = document.getElementById("resultsAllInterventions").value;
 let allSpeakers = document.getElementById("resultsAllSpeakers").value;
+let allFormings = document.getElementById("resultsAllFormings").value;
+
+
 let allInterventionsArray = JSON.parse(allInterventions);
 let allSpeakersArray = JSON.parse(allSpeakers);
+let allFormingsArray = JSON.parse(allFormings);
+
+
+console.log(allFormingsArray)
 
 /************************************************************
  * CALCULATING NUMBER OF DAYS FOR POSITIONNING INTERVENTION *
@@ -747,7 +762,7 @@ allInterventionsArray.forEach((interv) => {
   intervention = document.createElement("div");
   intervention.className = "tata";
   intervention.style =
-    "height: 27px;background: rgb(255, 153, 0);position: absolute;top:0; width: " +
+    "height: 27px;background: rgb(55 12 22 / 40%);position: absolute;top:0; width: " +
     Math.ceil(TotalDaysBetweenStartAndEnd * 25 + 25) +
     "px; z-index: 2;border-radius: 3px; left:" +
     Math.ceil(TotalDays * 25 - 5) +

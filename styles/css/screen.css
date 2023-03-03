@@ -95,3 +95,8 @@
 div#modalContent {
   width: 100%;
 }
+
+.form-select {
+
+  margin-bottom: 0.5rem;
+}

@@ -191,15 +191,16 @@ if (isset($_GET['deleteTraining'])) {
  * GET ALL THE INTERVENTIONS *
  *****************************/
 
-$allinterventions = $conn->prepare("SELECT * FROM ganttacha_interventions LEFT OUTER JOIN ganttacha_speakers ON speaker_intervention = id_speaker");
+$allinterventions = $conn->prepare("SELECT * FROM ganttacha_interventions LEFT OUTER JOIN ganttacha_speakers ON speaker_intervention = id_speaker LEFT OUTER JOIN ganttacha_trainings ON training_intervention = id_training  ORDER BY name_speaker ASC" );
 $allinterventions->execute();
 $resultsAllinterventions = $allinterventions->fetchAll();
+//var_dump($allinterventions);
 
 /************************
  * GET ALL THE SPEAKERS *
  ************************/
 
-$allSpeakers = $conn->prepare("SELECT * FROM ganttacha_interventions");
+$allSpeakers = $conn->prepare("SELECT * FROM ganttacha_speakers");
 $allSpeakers->execute();
 $resultsAllSpeakers = $allSpeakers->fetchAll();
 
@@ -213,3 +214,14 @@ $resultsAllSpeakers = $allSpeakers->fetchAll();
   $trainer->execute([$_GET['speakerName']]);
   header('Location: ./index.php');
 }
+
+/***********************************
+ * REQUEST TO SAVE AN INTERVENTION *
+ ***********************************/
+
+ if (isset($_GET['saveIntervention'])) {
+  $trainer = $conn->prepare("INSERT INTO ganttacha_interventions (name_intervention, start_intervention, end_intervention, training_intervention, speaker_intervention) VALUES (?, ?, ?, ?, ?)");
+  $trainer->execute([$_GET['formingName'],$_GET['formingStart'],$_GET['formingEnd'],$_GET['idformer'],$_GET['idforming'] ]);
+  header('Location: ./index.php');
+}
+
